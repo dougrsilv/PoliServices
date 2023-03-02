@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 15.0, *)
 class HomeServicesViewController: UIViewController {
     
     // MARK: - Properties
@@ -61,7 +60,6 @@ class HomeServicesViewController: UIViewController {
 
 // MARK: - HomeServicesViewDelegate
 
-@available(iOS 15.0, *)
 extension HomeServicesViewController: HomeServicesViewDelegate {
     func buttonService() {
         let recipe = NewServicesViewController()
@@ -73,7 +71,6 @@ extension HomeServicesViewController: HomeServicesViewDelegate {
 
 // MARK: - HomeServicesViewModelDelegate
 
-@available(iOS 15.0, *)
 extension HomeServicesViewController: HomeServicesViewModelDelegate {
     func timerBool(bool: Bool) {
         homeServiceView.setParameterHiden(values: bool)
