@@ -44,7 +44,7 @@ class NewServicesViewController: UICollectionViewController {
                     print(erro)
                 case .success(_):
                     self.newServicesView.data = self.viewModel.serviceViewModel
-                    self.newServicesView.collectionViewTeste.reloadData()
+                    self.newServicesView.collectionView.reloadData()
                     self.newServicesView.activity.stopAnimating()
                 }
             }
