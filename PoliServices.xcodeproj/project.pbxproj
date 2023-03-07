@@ -15,6 +15,7 @@
 		DA04E19629B0EE62008F0D24 /* SchedulingServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA04E19529B0EE62008F0D24 /* SchedulingServicesView.swift */; };
 		DAC3A27B29B11D320081B72C /* HomeServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3A27A29B11D320081B72C /* HomeServicesViewModel.swift */; };
 		DAC3A27D29B14B5F0081B72C /* SchedulingServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3A27C29B14B5F0081B72C /* SchedulingServicesViewModel.swift */; };
+		DACFBBD529B375F2000129CF /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACFBBD429B375F2000129CF /* ServiceModel.swift */; };
 		DAD18EB229B026F50024906A /* NewServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD18EB129B026F50024906A /* NewServicesViewController.swift */; };
 		DAD18EB429B02D120024906A /* NewServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD18EB329B02D120024906A /* NewServicesView.swift */; };
 		DAD18EB629B031010024906A /* NewServicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD18EB529B031010024906A /* NewServicesCell.swift */; };
@@ -22,6 +23,9 @@
 		DAD8B22E29AECAFA0049ED6D /* HomeServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD8B22D29AECAFA0049ED6D /* HomeServicesView.swift */; };
 		DAD8B23029AEE1600049ED6D /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD8B22F29AEE1600049ED6D /* InformationView.swift */; };
 		DAD8B23229AEEE170049ED6D /* LastServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD8B23129AEEE170049ED6D /* LastServiceView.swift */; };
+		DAEEA4DC29B6129100846A71 /* NewServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEEA4DB29B6129100846A71 /* NewServicesViewModel.swift */; };
+		DAEEA4DF29B6144900846A71 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEEA4DE29B6144900846A71 /* UIColor.swift */; };
+		DAEEA4E229B625D000846A71 /* NewServicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEEA4E129B625D000846A71 /* NewServicesService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +39,7 @@
 		DA04E19529B0EE62008F0D24 /* SchedulingServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingServicesView.swift; sourceTree = "<group>"; };
 		DAC3A27A29B11D320081B72C /* HomeServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServicesViewModel.swift; sourceTree = "<group>"; };
 		DAC3A27C29B14B5F0081B72C /* SchedulingServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingServicesViewModel.swift; sourceTree = "<group>"; };
+		DACFBBD429B375F2000129CF /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
 		DAD18EB129B026F50024906A /* NewServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesViewController.swift; sourceTree = "<group>"; };
 		DAD18EB329B02D120024906A /* NewServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesView.swift; sourceTree = "<group>"; };
 		DAD18EB529B031010024906A /* NewServicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesCell.swift; sourceTree = "<group>"; };
@@ -42,6 +47,9 @@
 		DAD8B22D29AECAFA0049ED6D /* HomeServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServicesView.swift; sourceTree = "<group>"; };
 		DAD8B22F29AEE1600049ED6D /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		DAD8B23129AEEE170049ED6D /* LastServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastServiceView.swift; sourceTree = "<group>"; };
+		DAEEA4DB29B6129100846A71 /* NewServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesViewModel.swift; sourceTree = "<group>"; };
+		DAEEA4DE29B6144900846A71 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		DAEEA4E129B625D000846A71 /* NewServicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,12 +102,21 @@
 			path = SchedulingServices;
 			sourceTree = "<group>";
 		};
+		DACFBBD329B375BA000129CF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DACFBBD429B375F2000129CF /* ServiceModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DAD18EB029B026D60024906A /* NewServices */ = {
 			isa = PBXGroup;
 			children = (
 				DAD18EB129B026F50024906A /* NewServicesViewController.swift */,
 				DAD18EB329B02D120024906A /* NewServicesView.swift */,
 				DAD18EB529B031010024906A /* NewServicesCell.swift */,
+				DAEEA4DB29B6129100846A71 /* NewServicesViewModel.swift */,
 			);
 			path = NewServices;
 			sourceTree = "<group>";
@@ -107,6 +124,9 @@
 		DAD8B22929AEC96F0049ED6D /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				DAEEA4E029B6257E00846A71 /* Service */,
+				DAEEA4DD29B6143600846A71 /* Extensions */,
+				DACFBBD329B375BA000129CF /* Model */,
 				DA04E19229B0EA6C008F0D24 /* SchedulingServices */,
 				DAD18EB029B026D60024906A /* NewServices */,
 				DAD8B22A29AEC97A0049ED6D /* HomeServices */,
@@ -124,6 +144,22 @@
 				DAC3A27A29B11D320081B72C /* HomeServicesViewModel.swift */,
 			);
 			path = HomeServices;
+			sourceTree = "<group>";
+		};
+		DAEEA4DD29B6143600846A71 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DAEEA4DE29B6144900846A71 /* UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DAEEA4E029B6257E00846A71 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DAEEA4E129B625D000846A71 /* NewServicesService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,12 +238,16 @@
 				DAD18EB429B02D120024906A /* NewServicesView.swift in Sources */,
 				DAD8B22C29AEC9B20049ED6D /* HomeServicesViewController.swift in Sources */,
 				4C55034529379F3600699589 /* AppDelegate.swift in Sources */,
+				DAEEA4DF29B6144900846A71 /* UIColor.swift in Sources */,
+				DAEEA4DC29B6129100846A71 /* NewServicesViewModel.swift in Sources */,
+				DAEEA4E229B625D000846A71 /* NewServicesService.swift in Sources */,
 				DAC3A27D29B14B5F0081B72C /* SchedulingServicesViewModel.swift in Sources */,
 				DA04E19429B0EE10008F0D24 /* SchedulingServicesViewController.swift in Sources */,
 				DAD8B23029AEE1600049ED6D /* InformationView.swift in Sources */,
 				4C55034729379F3600699589 /* SceneDelegate.swift in Sources */,
 				DAD18EB629B031010024906A /* NewServicesCell.swift in Sources */,
 				DA04E19629B0EE62008F0D24 /* SchedulingServicesView.swift in Sources */,
+				DACFBBD529B375F2000129CF /* ServiceModel.swift in Sources */,
 				DAD18EB229B026F50024906A /* NewServicesViewController.swift in Sources */,
 				DAC3A27B29B11D320081B72C /* HomeServicesViewModel.swift in Sources */,
 			);

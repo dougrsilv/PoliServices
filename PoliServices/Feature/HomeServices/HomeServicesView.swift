@@ -153,6 +153,9 @@ class HomeServicesView: UIView {
     func setParameter(model: HomeServicesViewModel) {
         lastServiceView.titleLastCard.text = model.serviceNameCard
         lastServiceView.dateAndHourLastCard.text = model.serviceDateCard
+        lastServiceView.lastCardView.backgroundColor = UIColor(hexString: model.colorCard)
+        lastServiceView.schedulingLastCard.text = model.dayAndHour
+        subTitle.text = model.dateAndHourNow()
         
         UIView.animate(withDuration: 0.3) {
             self.lastServiceView.alpha = model.hidesCard ? 1 : 0

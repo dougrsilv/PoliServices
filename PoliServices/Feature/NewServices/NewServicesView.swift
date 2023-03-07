@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NewServicesViewDelegate: AnyObject {
-    func typeService(service: String)
+    func typeService(service: String, duration: Int, color: String)
 }
 
 class NewServicesView: UIView {
@@ -17,9 +17,17 @@ class NewServicesView: UIView {
     
     weak var delegate: NewServicesViewDelegate?
     
+    var data: [Data] = []
     let cell = "cell"
     
-    private lazy var collectionViewTeste: UICollectionView = {
+    lazy var activity: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView()
+        activity.hidesWhenStopped = true
+        activity.startAnimating()
+        return activity
+    }()
+    
+    lazy var collectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.init())
         cv.delegate = self
         cv.dataSource = self
@@ -28,6 +36,7 @@ class NewServicesView: UIView {
         let cf: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
         cf.scrollDirection = .vertical
         cv.setCollectionViewLayout(cf, animated: false)
+        cv.backgroundView = activity
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
@@ -38,13 +47,13 @@ class NewServicesView: UIView {
         super.init(frame: frame)
         backgroundColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1)
         
-        addSubview(collectionViewTeste)
+        addSubview(collectionView)
 
         NSLayoutConstraint.activate([
-            collectionViewTeste.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            collectionViewTeste.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            collectionViewTeste.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            collectionViewTeste.bottomAnchor.constraint(equalTo: bottomAnchor)
+            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
@@ -58,30 +67,12 @@ class NewServicesView: UIView {
 extension NewServicesView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cell, for: indexPath) as! NewServicesCell
-        
-        if indexPath.row == 0 {
-            cell.titleService.text = "Código"
-            cell.imageServices.image = UIImage(systemName: "pencil.slash")
-            cell.imageServices.tintColor = .cyan
-        } else if indexPath.row == 1 {
-            cell.titleService.text = "Carreira"
-            cell.imageServices.image = UIImage(systemName: "graduationcap.circle.fill")
-            cell.imageServices.tintColor = .green
-        } else if indexPath.row == 2 {
-            cell.titleService.text = "Entrevista"
-            cell.imageServices.image = UIImage(systemName: "books.vertical.fill")
-            cell.imageServices.tintColor = .magenta
-        } else if indexPath.row == 3 {
-            cell.titleService.text = "Feedback"
-            cell.imageServices.image = UIImage(systemName: "scribble.variable")
-            cell.imageServices.tintColor = .brown
-        }
-        
+        cell.setupData(data: data[indexPath.row])
         return cell
     }
     
@@ -98,14 +89,6 @@ extension NewServicesView: UICollectionViewDelegate, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            delegate?.typeService(service: "Código")
-        } else if indexPath.row == 1 {
-            delegate?.typeService(service: "Carreira")
-        } else if indexPath.row == 2 {
-            delegate?.typeService(service: "Entrevista")
-        } else if indexPath.row == 3 {
-            delegate?.typeService(service: "Feedback")
-        }
+        delegate?.typeService(service: data[indexPath.row].name, duration: data[indexPath.row].duration, color: data[indexPath.row].color)
     }
 }

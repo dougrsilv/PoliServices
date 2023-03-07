@@ -12,12 +12,13 @@ class SchedulingServicesViewController: UIViewController {
     // MARK: - Properties
     
     let schedulingServicesView = SchedulingServicesView()
-    let services: SchedulingServicesViewModel
+    let viewModel: SchedulingServicesViewModel
+    let viewModelHome = HomeServicesViewModel()
     
     // MARK: - Lifecycle
     
-    init(services: SchedulingServicesViewModel) {
-        self.services = services
+    init(viewModel: SchedulingServicesViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -36,11 +37,14 @@ class SchedulingServicesViewController: UIViewController {
         backButton.title = title
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveClicked))
+        schedulingServicesView.setupData(setup: viewModel)
     }
     
     @objc func saveClicked() {
         UserDefaults.standard.set(schedulingServicesView.datePicker.date.timeIntervalSince1970, forKey: "service_date")
-        UserDefaults.standard.set(services.name, forKey: "service_name")
+        UserDefaults.standard.set(viewModel.name, forKey: "service_name")
+        UserDefaults.standard.set(viewModel.color, forKey: "service_color")
+        viewModelHome.colorCard = viewModel.color
         dismiss(animated: true)
     }
 }

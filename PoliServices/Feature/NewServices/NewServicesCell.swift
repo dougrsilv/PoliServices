@@ -22,6 +22,9 @@ class NewServicesCell: UICollectionViewCell {
         label.text = "Teste"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .black
+        label.numberOfLines = 3
+        label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -45,6 +48,8 @@ class NewServicesCell: UICollectionViewCell {
             imageServices.widthAnchor.constraint(equalToConstant: 60),
             
             titleService.topAnchor.constraint(equalTo: imageServices.bottomAnchor, constant: 12),
+            titleService.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleService.trailingAnchor.constraint(equalTo: trailingAnchor),
             titleService.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
     }
@@ -53,4 +58,11 @@ class NewServicesCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Fuctions
+    
+    func setupData(data: Data) {
+        imageServices.image = UIImage(systemName: data.icon)
+        titleService.text = data.name
+        imageServices.tintColor =  UIColor(hexString: data.color)
+    }
 }

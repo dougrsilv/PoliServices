@@ -46,6 +46,15 @@ class LastServiceView: UIView {
         return label
     }()
     
+    lazy var schedulingLastCard: UILabel = {
+        let label = UILabel()
+        label.text = "Agendamento"
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     lazy var imageLastCard: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "book.fill")
@@ -59,7 +68,6 @@ class LastServiceView: UIView {
         view.layer.cornerRadius = 12
         view.layer.borderWidth = 2
         view.layer.borderColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1).cgColor
-        view.backgroundColor = .systemTeal
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -75,6 +83,7 @@ class LastServiceView: UIView {
         lastCardView.addSubview(dateAndHourTitleLastCard)
         lastCardView.addSubview(dateAndHourLastCard)
         lastCardView.addSubview(imageLastCard)
+        lastCardView.addSubview(schedulingLastCard)
         
         NSLayoutConstraint.activate([
             titleLast.topAnchor.constraint(equalTo: topAnchor),
@@ -94,6 +103,9 @@ class LastServiceView: UIView {
             
             dateAndHourLastCard.leadingAnchor.constraint(equalTo: lastCardView.leadingAnchor, constant: 16),
             dateAndHourLastCard.bottomAnchor.constraint(equalTo: lastCardView.bottomAnchor, constant: -16),
+            
+            schedulingLastCard.topAnchor.constraint(equalTo: dateAndHourLastCard.bottomAnchor, constant: -3),
+            schedulingLastCard.leadingAnchor.constraint(equalTo: lastCardView.leadingAnchor, constant: 16),
             
             imageLastCard.trailingAnchor.constraint(equalTo: lastCardView.trailingAnchor, constant: -4),
             imageLastCard.bottomAnchor.constraint(equalTo: lastCardView.bottomAnchor, constant: -16),

@@ -33,8 +33,6 @@ class HomeServicesViewController: UIViewController {
         super.viewDidLoad()
         homeServiceView.delegate = self
         view.backgroundColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1)
-        
-        homeServiceView.subTitle.text = viewModel.dateAndHourNow()
         viewModel.initTimer()
     }
     
@@ -46,9 +44,9 @@ class HomeServicesViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        viewModel.delegate = self
         viewModel.setupService()
         homeServiceView.setParameter(model: viewModel)
-        viewModel.delegate = self
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,7 +60,9 @@ class HomeServicesViewController: UIViewController {
 
 extension HomeServicesViewController: HomeServicesViewDelegate {
     func buttonService() {
-        let recipe = NewServicesViewController()
+        let newServicesService = NewServicesService()
+        let newServicesViewModel = NewServicesViewModel(service: newServicesService)
+        let recipe = NewServicesViewController(viewModel: newServicesViewModel)
         let navBarOnModal: UINavigationController = UINavigationController(rootViewController: recipe)
         navBarOnModal.modalPresentationStyle = .fullScreen
         navigationController?.present(navBarOnModal, animated: true)

@@ -24,7 +24,6 @@ class SchedulingServicesView: UIView {
     lazy var datePicker: UIDatePicker = {
         let date = UIDatePicker()
         date.minimumDate = Date()
-        date.date = Calendar.current.date(byAdding: .minute, value: 1, to: Date()) ?? Date()
         date.preferredDatePickerStyle = .inline
         date.translatesAutoresizingMaskIntoConstraints = false
         return date
@@ -55,5 +54,11 @@ class SchedulingServicesView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Function
+    
+    func setupData(setup: SchedulingServicesViewModel) {
+        datePicker.date = Calendar.current.date(byAdding: .minute, value: setup.duration, to: Date()) ?? Date()
     }
 }
