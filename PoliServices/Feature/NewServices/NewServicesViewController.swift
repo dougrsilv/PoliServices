@@ -38,15 +38,13 @@ class NewServicesViewController: UICollectionViewController {
         view.backgroundColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1)
         
         viewModel.buscarService { service in
-            DispatchQueue.main.async {
-                switch service {
-                case let .failure(erro):
-                    print(erro)
-                case .success(_):
-                    self.newServicesView.data = self.viewModel.serviceViewModel
-                    self.newServicesView.collectionView.reloadData()
-                    self.newServicesView.activity.stopAnimating()
-                }
+            switch service {
+            case let .failure(erro):
+                print(erro)
+            case .success(_):
+                self.newServicesView.data = self.viewModel.serviceViewModel
+                self.newServicesView.collectionView.reloadData()
+                self.newServicesView.activity.stopAnimating()
             }
         }
     }
