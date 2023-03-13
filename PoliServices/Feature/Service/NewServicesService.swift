@@ -21,7 +21,7 @@ class NewServicesService: NewServicesServiceProtocol {
     
     func buscarService(completion: @escaping (Result<ServiceModel, NewServiceError>) -> ()) {
         
-        guard let url = URL(string: "https://9a1c098c-8f75-47ad-a938-ad3f9179490a.mock.pstmn.io/services") else { return }
+        guard let url = URL(string: "https://run.mocky.io/v3/1cef5f67-ef0e-4397-9199-4afaeee44e3b") else { return }
         
         URLSession.shared.dataTask(with: url) { data, res, err in
             if let err = err {

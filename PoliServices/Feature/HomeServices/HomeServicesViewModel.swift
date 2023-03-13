@@ -9,6 +9,8 @@ import Foundation
  
 protocol HomeServicesViewModelDelegate: AnyObject {
     func timerBool(bool: Bool)
+    func timerAlert(bool: Bool)
+    func timerEnable(bool: Bool)
 }
 
 class HomeServicesViewModel {
@@ -22,6 +24,7 @@ class HomeServicesViewModel {
     var serviceDateCard: String = ""
     var colorCard: String = ""
     var dayAndHour: String = ""
+    var booleanTeste: Bool = false
     
     func setupService() {
         let currentDate = Date()
@@ -40,12 +43,15 @@ class HomeServicesViewModel {
             )
             colorCard = serviceColor ?? ""
             calculateDays(from: currentDate, to: serviceDate)
+            calculeTime(from: currentDate, to: serviceDate)
+            calculeTimeEnable(from: currentDate, to: serviceDate)
         }else{
             hidesCard = hasService
             delegate?.timerBool(bool: hasService)
             UserDefaults.standard.removeObject(forKey: "service_date")
             UserDefaults.standard.removeObject(forKey: "service_name")
             UserDefaults.standard.removeObject(forKey: "service_color")
+            UserDefaults.standard.removeObject(forKey: "service_Desabilita")
         }       
     }
     
@@ -92,6 +98,27 @@ class HomeServicesViewModel {
         }
         else if hours != 0 && minutes > 0 {
             dayAndHour = "Faltam \(String(describing: hours)) e \(String(describing: minutes)) minutos para o atendimento"
+        }
+    }
+    
+    func calculeTime(from lhs: Date, to rhs: Date) {
+        let diffComponents = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: lhs, to: rhs)
+        guard let minutes = diffComponents.minute else { return }
+        
+        if minutes == 15 {
+            booleanTeste = true
+            delegate?.timerAlert(bool: true)
+        }
+    }
+    
+    func calculeTimeEnable(from lhs: Date, to rhs: Date) {
+        let diffComponents = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: lhs, to: rhs)
+        guard let hours = diffComponents.hour else { return }
+        //guard let minutes = diffComponents.minute else { return }
+        
+        if hours == 2 {
+            booleanTeste = true
+            delegate?.timerEnable(bool: true)
         }
     }
 }

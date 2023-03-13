@@ -13,8 +13,16 @@
 		4C55035129379F3900699589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C55034F29379F3900699589 /* LaunchScreen.storyboard */; };
 		DA04E19429B0EE10008F0D24 /* SchedulingServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA04E19329B0EE10008F0D24 /* SchedulingServicesViewController.swift */; };
 		DA04E19629B0EE62008F0D24 /* SchedulingServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA04E19529B0EE62008F0D24 /* SchedulingServicesView.swift */; };
+		DA7CB57029B8D96C00904E2A /* PostAnalitcsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7CB56F29B8D96B00904E2A /* PostAnalitcsService.swift */; };
+		DAB703B529BD01C300AA2AB1 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703B429BD01C300AA2AB1 /* InputTextView.swift */; };
+		DAB703B729BD0E6400AA2AB1 /* ReasonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703B629BD0E6400AA2AB1 /* ReasonModel.swift */; };
+		DAB703B929BD0F7900AA2AB1 /* ReasonServiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703B829BD0F7900AA2AB1 /* ReasonServiceService.swift */; };
+		DAB703BB29BD149A00AA2AB1 /* AlertServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703BA29BD149A00AA2AB1 /* AlertServiceViewModel.swift */; };
+		DAC228C829BBB528001936F9 /* AlertServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC228C729BBB528001936F9 /* AlertServiceView.swift */; };
 		DAC3A27B29B11D320081B72C /* HomeServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3A27A29B11D320081B72C /* HomeServicesViewModel.swift */; };
 		DAC3A27D29B14B5F0081B72C /* SchedulingServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3A27C29B14B5F0081B72C /* SchedulingServicesViewModel.swift */; };
+		DACD289829BE5FA5005DB832 /* ServiceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACD289729BE5FA5005DB832 /* ServiceDetailViewModel.swift */; };
+		DACE2D7729BAB17C00226581 /* AlertServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACE2D7629BAB17C00226581 /* AlertServiceViewController.swift */; };
 		DACFBBD529B375F2000129CF /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACFBBD429B375F2000129CF /* ServiceModel.swift */; };
 		DAD18EB229B026F50024906A /* NewServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD18EB129B026F50024906A /* NewServicesViewController.swift */; };
 		DAD18EB429B02D120024906A /* NewServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD18EB329B02D120024906A /* NewServicesView.swift */; };
@@ -23,9 +31,13 @@
 		DAD8B22E29AECAFA0049ED6D /* HomeServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD8B22D29AECAFA0049ED6D /* HomeServicesView.swift */; };
 		DAD8B23029AEE1600049ED6D /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD8B22F29AEE1600049ED6D /* InformationView.swift */; };
 		DAD8B23229AEEE170049ED6D /* LastServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD8B23129AEEE170049ED6D /* LastServiceView.swift */; };
+		DAE6A1C929BA61FE00AEDD2E /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE6A1C829BA61FE00AEDD2E /* ServiceDetailViewController.swift */; };
+		DAE6A1CB29BA63B500AEDD2E /* ServiceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE6A1CA29BA63B500AEDD2E /* ServiceDetailView.swift */; };
+		DAE6A1CD29BA69BC00AEDD2E /* ServiceDetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE6A1CC29BA69BC00AEDD2E /* ServiceDetailCardView.swift */; };
 		DAEEA4DC29B6129100846A71 /* NewServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEEA4DB29B6129100846A71 /* NewServicesViewModel.swift */; };
 		DAEEA4DF29B6144900846A71 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEEA4DE29B6144900846A71 /* UIColor.swift */; };
 		DAEEA4E229B625D000846A71 /* NewServicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEEA4E129B625D000846A71 /* NewServicesService.swift */; };
+		DAEF06EF29BCDB210077BC81 /* ReasonServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEF06EE29BCDB210077BC81 /* ReasonServiceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +49,16 @@
 		4C55035229379F3900699589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA04E19329B0EE10008F0D24 /* SchedulingServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingServicesViewController.swift; sourceTree = "<group>"; };
 		DA04E19529B0EE62008F0D24 /* SchedulingServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingServicesView.swift; sourceTree = "<group>"; };
+		DA7CB56F29B8D96B00904E2A /* PostAnalitcsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnalitcsService.swift; sourceTree = "<group>"; };
+		DAB703B429BD01C300AA2AB1 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		DAB703B629BD0E6400AA2AB1 /* ReasonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonModel.swift; sourceTree = "<group>"; };
+		DAB703B829BD0F7900AA2AB1 /* ReasonServiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonServiceService.swift; sourceTree = "<group>"; };
+		DAB703BA29BD149A00AA2AB1 /* AlertServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceViewModel.swift; sourceTree = "<group>"; };
+		DAC228C729BBB528001936F9 /* AlertServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceView.swift; sourceTree = "<group>"; };
 		DAC3A27A29B11D320081B72C /* HomeServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServicesViewModel.swift; sourceTree = "<group>"; };
 		DAC3A27C29B14B5F0081B72C /* SchedulingServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingServicesViewModel.swift; sourceTree = "<group>"; };
+		DACD289729BE5FA5005DB832 /* ServiceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewModel.swift; sourceTree = "<group>"; };
+		DACE2D7629BAB17C00226581 /* AlertServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceViewController.swift; sourceTree = "<group>"; };
 		DACFBBD429B375F2000129CF /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
 		DAD18EB129B026F50024906A /* NewServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesViewController.swift; sourceTree = "<group>"; };
 		DAD18EB329B02D120024906A /* NewServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesView.swift; sourceTree = "<group>"; };
@@ -47,9 +67,13 @@
 		DAD8B22D29AECAFA0049ED6D /* HomeServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServicesView.swift; sourceTree = "<group>"; };
 		DAD8B22F29AEE1600049ED6D /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		DAD8B23129AEEE170049ED6D /* LastServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastServiceView.swift; sourceTree = "<group>"; };
+		DAE6A1C829BA61FE00AEDD2E /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
+		DAE6A1CA29BA63B500AEDD2E /* ServiceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailView.swift; sourceTree = "<group>"; };
+		DAE6A1CC29BA69BC00AEDD2E /* ServiceDetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailCardView.swift; sourceTree = "<group>"; };
 		DAEEA4DB29B6129100846A71 /* NewServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesViewModel.swift; sourceTree = "<group>"; };
 		DAEEA4DE29B6144900846A71 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DAEEA4E129B625D000846A71 /* NewServicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesService.swift; sourceTree = "<group>"; };
+		DAEF06EE29BCDB210077BC81 /* ReasonServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonServiceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +126,30 @@
 			path = SchedulingServices;
 			sourceTree = "<group>";
 		};
+		DAB703B329BD019B00AA2AB1 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				DAB703B429BD01C300AA2AB1 /* InputTextView.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		DAC228C629BBB45F001936F9 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				DACE2D7629BAB17C00226581 /* AlertServiceViewController.swift */,
+				DAC228C729BBB528001936F9 /* AlertServiceView.swift */,
+				DAEF06EE29BCDB210077BC81 /* ReasonServiceView.swift */,
+				DAB703BA29BD149A00AA2AB1 /* AlertServiceViewModel.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		DACFBBD329B375BA000129CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				DACFBBD429B375F2000129CF /* ServiceModel.swift */,
+				DAB703B629BD0E6400AA2AB1 /* ReasonModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -124,6 +168,9 @@
 		DAD8B22929AEC96F0049ED6D /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				DAB703B329BD019B00AA2AB1 /* Helper */,
+				DAC228C629BBB45F001936F9 /* Alert */,
+				DAE6A1C729BA61C200AEDD2E /* ServiceDetail */,
 				DAEEA4E029B6257E00846A71 /* Service */,
 				DAEEA4DD29B6143600846A71 /* Extensions */,
 				DACFBBD329B375BA000129CF /* Model */,
@@ -146,6 +193,17 @@
 			path = HomeServices;
 			sourceTree = "<group>";
 		};
+		DAE6A1C729BA61C200AEDD2E /* ServiceDetail */ = {
+			isa = PBXGroup;
+			children = (
+				DAE6A1C829BA61FE00AEDD2E /* ServiceDetailViewController.swift */,
+				DAE6A1CA29BA63B500AEDD2E /* ServiceDetailView.swift */,
+				DAE6A1CC29BA69BC00AEDD2E /* ServiceDetailCardView.swift */,
+				DACD289729BE5FA5005DB832 /* ServiceDetailViewModel.swift */,
+			);
+			path = ServiceDetail;
+			sourceTree = "<group>";
+		};
 		DAEEA4DD29B6143600846A71 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +216,8 @@
 			isa = PBXGroup;
 			children = (
 				DAEEA4E129B625D000846A71 /* NewServicesService.swift */,
+				DA7CB56F29B8D96B00904E2A /* PostAnalitcsService.swift */,
+				DAB703B829BD0F7900AA2AB1 /* ReasonServiceService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -234,22 +294,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAD8B23229AEEE170049ED6D /* LastServiceView.swift in Sources */,
+				DACE2D7729BAB17C00226581 /* AlertServiceViewController.swift in Sources */,
 				DAD8B22E29AECAFA0049ED6D /* HomeServicesView.swift in Sources */,
 				DAD18EB429B02D120024906A /* NewServicesView.swift in Sources */,
 				DAD8B22C29AEC9B20049ED6D /* HomeServicesViewController.swift in Sources */,
+				DAE6A1CD29BA69BC00AEDD2E /* ServiceDetailCardView.swift in Sources */,
 				4C55034529379F3600699589 /* AppDelegate.swift in Sources */,
 				DAEEA4DF29B6144900846A71 /* UIColor.swift in Sources */,
 				DAEEA4DC29B6129100846A71 /* NewServicesViewModel.swift in Sources */,
 				DAEEA4E229B625D000846A71 /* NewServicesService.swift in Sources */,
 				DAC3A27D29B14B5F0081B72C /* SchedulingServicesViewModel.swift in Sources */,
+				DAB703B729BD0E6400AA2AB1 /* ReasonModel.swift in Sources */,
 				DA04E19429B0EE10008F0D24 /* SchedulingServicesViewController.swift in Sources */,
+				DA7CB57029B8D96C00904E2A /* PostAnalitcsService.swift in Sources */,
 				DAD8B23029AEE1600049ED6D /* InformationView.swift in Sources */,
+				DAEF06EF29BCDB210077BC81 /* ReasonServiceView.swift in Sources */,
 				4C55034729379F3600699589 /* SceneDelegate.swift in Sources */,
+				DAB703B529BD01C300AA2AB1 /* InputTextView.swift in Sources */,
 				DAD18EB629B031010024906A /* NewServicesCell.swift in Sources */,
 				DA04E19629B0EE62008F0D24 /* SchedulingServicesView.swift in Sources */,
 				DACFBBD529B375F2000129CF /* ServiceModel.swift in Sources */,
+				DAC228C829BBB528001936F9 /* AlertServiceView.swift in Sources */,
+				DAB703B929BD0F7900AA2AB1 /* ReasonServiceService.swift in Sources */,
+				DACD289829BE5FA5005DB832 /* ServiceDetailViewModel.swift in Sources */,
+				DAB703BB29BD149A00AA2AB1 /* AlertServiceViewModel.swift in Sources */,
 				DAD18EB229B026F50024906A /* NewServicesViewController.swift in Sources */,
+				DAE6A1CB29BA63B500AEDD2E /* ServiceDetailView.swift in Sources */,
 				DAC3A27B29B11D320081B72C /* HomeServicesViewModel.swift in Sources */,
+				DAE6A1C929BA61FE00AEDD2E /* ServiceDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
