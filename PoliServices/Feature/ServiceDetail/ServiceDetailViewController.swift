@@ -44,15 +44,6 @@ class ServiceDetailViewController: UIViewController {
         backButton.title = ""
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
-        viewModel.setupServiceName()
-        viewModel.setupStartDate()
-        viewModel.setupStartHour()
-        viewModel.setupFinishDate()
-        viewModel.setupFinishHour()
-        viewModel.setupRequestDate()
-        viewModel.setupColorIcon()
-        viewModel.setupDesabilityButton()
-        
         serviceDetailView.setupDate(setup: viewModel)
     }
 }
@@ -60,7 +51,7 @@ class ServiceDetailViewController: UIViewController {
 // MARK: - ServiceDetailViewDelegate
 
 extension ServiceDetailViewController: ServiceDetailViewDelegate {
-    func clickButton() {
+    func clickCancelButton() {
         let service = ReasonServiceService()
         let viewModel = AlertServiceViewModel(service: service)
         let recipe = AlertServiceViewController(viewModel: viewModel)

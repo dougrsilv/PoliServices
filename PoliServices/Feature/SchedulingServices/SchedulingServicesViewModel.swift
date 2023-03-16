@@ -19,4 +19,19 @@ class SchedulingServicesViewModel {
         self.color = color
     }
     
+    func hourStart() -> String {
+        let date = Date()
+        let df = DateFormatter()
+        df.dateFormat = "h:mm a"
+        df.locale = Locale(identifier: "en_US_POSIX")
+        let dateString = df.string(from: date)
+        return dateString
+    }
+    
+    func saveDataScheduling() {
+        let start = hourStart()
+        UserDefaults.standard.set(name, forKey: "service_name")
+        UserDefaults.standard.set(color, forKey: "service_color")
+        UserDefaults.standard.set(start, forKey: "service_hour_start")
+    }
 }

@@ -63,7 +63,6 @@ class HomeServicesView: UIView {
     
     lazy var lastServiceView: LastServiceView = {
         let view = LastServiceView()
-        view.widthAnchor.constraint(equalToConstant: 331).isActive = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

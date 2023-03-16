@@ -13,6 +13,7 @@
 		4C55035129379F3900699589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C55034F29379F3900699589 /* LaunchScreen.storyboard */; };
 		DA04E19429B0EE10008F0D24 /* SchedulingServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA04E19329B0EE10008F0D24 /* SchedulingServicesViewController.swift */; };
 		DA04E19629B0EE62008F0D24 /* SchedulingServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA04E19529B0EE62008F0D24 /* SchedulingServicesView.swift */; };
+		DA3770BF29C107890005FDB1 /* ServiceDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3770BE29C107890005FDB1 /* ServiceDetailService.swift */; };
 		DA7CB57029B8D96C00904E2A /* PostAnalitcsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7CB56F29B8D96B00904E2A /* PostAnalitcsService.swift */; };
 		DAB703B529BD01C300AA2AB1 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703B429BD01C300AA2AB1 /* InputTextView.swift */; };
 		DAB703B729BD0E6400AA2AB1 /* ReasonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703B629BD0E6400AA2AB1 /* ReasonModel.swift */; };
@@ -49,6 +50,7 @@
 		4C55035229379F3900699589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA04E19329B0EE10008F0D24 /* SchedulingServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingServicesViewController.swift; sourceTree = "<group>"; };
 		DA04E19529B0EE62008F0D24 /* SchedulingServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingServicesView.swift; sourceTree = "<group>"; };
+		DA3770BE29C107890005FDB1 /* ServiceDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailService.swift; sourceTree = "<group>"; };
 		DA7CB56F29B8D96B00904E2A /* PostAnalitcsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnalitcsService.swift; sourceTree = "<group>"; };
 		DAB703B429BD01C300AA2AB1 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		DAB703B629BD0E6400AA2AB1 /* ReasonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonModel.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				DAEEA4E129B625D000846A71 /* NewServicesService.swift */,
 				DA7CB56F29B8D96B00904E2A /* PostAnalitcsService.swift */,
 				DAB703B829BD0F7900AA2AB1 /* ReasonServiceService.swift */,
+				DA3770BE29C107890005FDB1 /* ServiceDetailService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				DACD289829BE5FA5005DB832 /* ServiceDetailViewModel.swift in Sources */,
 				DAB703BB29BD149A00AA2AB1 /* AlertServiceViewModel.swift in Sources */,
 				DAD18EB229B026F50024906A /* NewServicesViewController.swift in Sources */,
+				DA3770BF29C107890005FDB1 /* ServiceDetailService.swift in Sources */,
 				DAE6A1CB29BA63B500AEDD2E /* ServiceDetailView.swift in Sources */,
 				DAC3A27B29B11D320081B72C /* HomeServicesViewModel.swift in Sources */,
 				DAE6A1C929BA61FE00AEDD2E /* ServiceDetailViewController.swift in Sources */,

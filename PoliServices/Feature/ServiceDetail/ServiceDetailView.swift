@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ServiceDetailViewDelegate: AnyObject {
-    func clickButton()
+    func clickCancelButton()
 }
 
 class ServiceDetailView: UIView {
@@ -69,11 +69,11 @@ class ServiceDetailView: UIView {
     
     func setupDate(setup: ServiceDetailViewModel) {
         serviceDetailCardView.titleLastCard.text = setup.serviceName
-        serviceDetailCardView.valueStartDateDetailCard.text = setup.startDate
+        serviceDetailCardView.valueStartDateDetailCard.text = setup.setupStartDate()
         serviceDetailCardView.hourStartDetailCard.text = setup.startHour
-        serviceDetailCardView.valueFinishDateDetailCard.text = setup.finishDate
-        serviceDetailCardView.hourFinishDetailCard.text = setup.finishHour
-        serviceDetailCardView.requestDateDetailCard.text = setup.requestDate
+        serviceDetailCardView.valueFinishDateDetailCard.text = setup.setupFinishDate()
+        serviceDetailCardView.hourFinishDetailCard.text = setup.setupFinishHour()
+        serviceDetailCardView.requestDateDetailCard.text = setup.setupRequestDate()
         serviceDetailCardView.imageLastCard.tintColor =  UIColor(hexString: setup.colorIcon)
         if setup.desabilityButton == "1" {
             serviceButton.isEnabled = false
@@ -81,7 +81,7 @@ class ServiceDetailView: UIView {
     }
     
     @objc func onEnterTap() {
-        delegate?.clickButton()
+        delegate?.clickCancelButton()
     }
     
 }

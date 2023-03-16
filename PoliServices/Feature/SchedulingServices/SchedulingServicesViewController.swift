@@ -42,21 +42,9 @@ class SchedulingServicesViewController: UIViewController {
     
     // MARK: - Fuctions
     
-    func hourStart() -> String {
-        let date = Date()
-        let df = DateFormatter()
-        df.dateFormat = "h:mm a"
-        df.locale = Locale(identifier: "en_US_POSIX")
-        let dateString = df.string(from: date)
-        return dateString
-    }
-    
     @objc func saveClicked() {
         UserDefaults.standard.set(schedulingServicesView.datePicker.date.timeIntervalSince1970, forKey: "service_date")
-        UserDefaults.standard.set(viewModel.name, forKey: "service_name")
-        UserDefaults.standard.set(viewModel.color, forKey: "service_color")
-        let start = hourStart()
-        UserDefaults.standard.set(start, forKey: "service_hour_start")
+        viewModel.saveDataScheduling()
         dismiss(animated: true)
     }
 }

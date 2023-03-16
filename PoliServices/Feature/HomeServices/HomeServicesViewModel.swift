@@ -121,4 +121,12 @@ class HomeServicesViewModel {
             delegate?.timerEnable(bool: true)
         }
     }
+    
+    func removeDataSave() {
+        UserDefaults.standard.removeObject(forKey: "service_date")
+        UserDefaults.standard.removeObject(forKey: "service_name")
+        UserDefaults.standard.removeObject(forKey: "service_color")
+        UserDefaults.standard.removeObject(forKey: "service_hour_start")
+        UserDefaults.standard.removeObject(forKey: "service_Desabilita")
+    }
 }

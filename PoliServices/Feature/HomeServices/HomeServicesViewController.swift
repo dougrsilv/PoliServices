@@ -48,14 +48,6 @@ class HomeServicesViewController: UIViewController {
         homeServiceView.setParameter(model: viewModel)
         self.homeServiceView.layoutIfNeeded()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.delegate = self
-        viewModel.setupService()
-        homeServiceView.setParameter(model: viewModel)
-        self.homeServiceView.layoutIfNeeded()
-    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -64,7 +56,13 @@ class HomeServicesViewController: UIViewController {
     }
     
     @objc func handleTap() {
-        let serviceDetailViewModel = ServiceDetailViewModel()
+        let serviceDetailService = ServiceDetailService()
+        let serviceDetailViewModel = ServiceDetailViewModel(serviceName: serviceDetailService.serviceNameRec ?? "",
+                                                            hourStart: serviceDetailService.hourStart ?? "",
+                                                            serviceDateInteger: serviceDetailService.serviceDateInteger,
+                                                            colorIcon: serviceDetailService.colorIconSave ?? "",
+                                                            desabilityButton: serviceDetailService.desabily ?? "")
+        
         let serviceDetailViewController = ServiceDetailViewController(viewModel: serviceDetailViewModel)
         serviceDetailViewController.delegate = self
         navigationController?.pushViewController(serviceDetailViewController, animated: true)
@@ -73,10 +71,7 @@ class HomeServicesViewController: UIViewController {
     func alertNumber(title: String, message: String) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         controller.addAction(.init(title: "OK", style: .default, handler: { alert in
-            let serviceDetailViewModel = ServiceDetailViewModel()
-            let serviceDetailViewController = ServiceDetailViewController(viewModel: serviceDetailViewModel)
-            serviceDetailViewController.delegate = self
-            self.navigationController?.pushViewController(serviceDetailViewController, animated: true)
+            self.handleTap()
         }))
         present(controller, animated: true)
     }
@@ -120,11 +115,7 @@ extension HomeServicesViewController: HomeServicesViewModelDelegate {
 extension HomeServicesViewController: ServiceDetailViewControllerDelgate {
     func cancelService(value: Bool) {
         homeServiceView.setParameterHiden(values: !value)
-        UserDefaults.standard.removeObject(forKey: "service_date")
-        UserDefaults.standard.removeObject(forKey: "service_name")
-        UserDefaults.standard.removeObject(forKey: "service_color")
-        UserDefaults.standard.removeObject(forKey: "service_hour_start")
-        UserDefaults.standard.removeObject(forKey: "service_Desabilita")
+        viewModel.removeDataSave()
         count = 0
     }
 }

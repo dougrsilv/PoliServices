@@ -9,74 +9,55 @@ import Foundation
 
 class ServiceDetailViewModel {
     
-    var serviceName: String = ""
-    var startDate: String = ""
-    var startHour: String = ""
-    var finishDate: String = ""
-    var finishHour: String = ""
-    var requestDate: String = ""
-    var colorIcon: String = ""
-    var desabilityButton: String = ""
+    var serviceName: String
+    var startHour: String
+    var colorIcon: String
+    var desabilityButton: String
+    var serviceDateInteger: Int
     let dateFormatter = DateFormatter()
     
-    let serviceNameRec = UserDefaults.standard.string(forKey: "service_name")
-    let serviceDateInteger = UserDefaults.standard.integer(forKey: "service_date")
-    let hourStart = UserDefaults.standard.string(forKey: "service_hour_start")
-    let colorIconSave = UserDefaults.standard.string(forKey: "service_color")
-    let desabily = UserDefaults.standard.string(forKey: "service_Desabilita")
-    
-    // Nome do Serviço
-    func setupServiceName() {
-        self.serviceName = serviceNameRec ?? ""
+    init(serviceName: String, hourStart: String,
+         serviceDateInteger: Int,
+         colorIcon: String,
+         desabilityButton: String) {
+        self.serviceName = serviceName
+        self.startHour = hourStart
+        self.serviceDateInteger = serviceDateInteger
+        self.colorIcon = colorIcon
+        self.desabilityButton = desabilityButton
     }
     
-    // Start Date
-    func setupStartDate() {
+    func setupStartDate() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
-        startDate = serviceDate.formatted(
+       let startDate = serviceDate.formatted(
             date: .complete,
             time: .omitted
         )
+        return startDate
     }
     
-    // Start Time
-    func setupStartHour() {
-        startHour = hourStart ?? ""
-    }
-    
-    // Finish Date
-    func setupFinishDate() {
+    func setupFinishDate() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
-        finishDate = serviceDate.formatted(
+        let finishDate = serviceDate.formatted(
             date: .complete,
             time: .omitted
         )
+        return finishDate
     }
     
-    // Finish Time
-    func setupFinishHour() {
+    func setupFinishHour() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
         dateFormatter.dateFormat = "hh:mm a"
         let date = dateFormatter.string(from: serviceDate)
-        finishHour = date
+        return date
     }
     
-    // Request Date
-    func setupRequestDate() {
+    func setupRequestDate() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
-        requestDate = serviceDate.formatted(
+        let requestDate = serviceDate.formatted(
             date: .complete,
             time: .omitted
         )
-    }
-    
-    // Icon Color
-    func setupColorIcon() {
-        colorIcon = colorIconSave ?? ""
-    }
-    
-    // Desability Button
-    func setupDesabilityButton() {
-        desabilityButton = desabily ?? ""
+        return requestDate
     }
 }
