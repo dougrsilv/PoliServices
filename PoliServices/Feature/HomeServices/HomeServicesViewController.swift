@@ -37,16 +37,18 @@ class HomeServicesViewController: UIViewController {
         viewModel.initTimer()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         homeServiceView.addGestureRecognizer(tapGesture)
+        viewModel.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         view.backgroundColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1)
-        viewModel.delegate = self
+        //viewModel.delegate = self
         viewModel.setupService()
-        homeServiceView.setParameter(model: viewModel)
-        self.homeServiceView.layoutIfNeeded()
+        //homeServiceView.setParameter(model: viewModel)
+        //homeServiceView.setParameter(model:)
+        //self.homeServiceView.layoutIfNeeded()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,6 +96,10 @@ extension HomeServicesViewController: HomeServicesViewDelegate {
 // MARK: - HomeServicesViewModelDelegate
 
 extension HomeServicesViewController: HomeServicesViewModelDelegate {
+    func onStartDataHomeService(model: HomeModel) {
+        homeServiceView.setParameter(model: model)
+    }
+    
     func timerEnable(bool: Bool) {
         UserDefaults.standard.set(bool, forKey: "service_Desabilita")
     }
@@ -115,7 +121,7 @@ extension HomeServicesViewController: HomeServicesViewModelDelegate {
 extension HomeServicesViewController: ServiceDetailViewControllerDelgate {
     func cancelService(value: Bool) {
         homeServiceView.setParameterHiden(values: !value)
-        viewModel.removeDataSave()
+        //viewModel.removeDataSave()
         count = 0
     }
 }

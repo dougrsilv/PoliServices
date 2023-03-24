@@ -150,12 +150,13 @@ class HomeServicesView: UIView {
         delegate?.buttonService()
     }
     
-    func setParameter(model: HomeServicesViewModel) {
+//    func setParameter(model: HomeServicesViewModel) {
+    func setParameter(model: HomeModel) {
         lastServiceView.titleLastCard.text = model.serviceNameCard
         lastServiceView.dateAndHourLastCard.text = model.serviceDateCard
         lastServiceView.lastCardView.backgroundColor = UIColor(hexString: model.colorCard)
         lastServiceView.schedulingLastCard.text = model.dayAndHour
-        subTitle.text = model.dateAndHourNow()
+        //subTitle.text = model.dateAndHourNow()
         
         UIView.animate(withDuration: 0.3) {
             self.lastServiceView.alpha = model.hidesCard ? 1 : 0

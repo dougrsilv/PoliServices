@@ -11,20 +11,22 @@ protocol HomeServicesViewModelDelegate: AnyObject {
     func timerBool(bool: Bool)
     func timerAlert(bool: Bool)
     func timerEnable(bool: Bool)
+    func onStartDataHomeService(model: HomeModel)
 }
 
 class HomeServicesViewModel {
     
     weak var delegate: HomeServicesViewModelDelegate?
+    private var homeModel: HomeModel?
     
-    private var timer: Timer?
-    let currentDatet = Date()
-    var hidesCard: Bool = false
-    var serviceNameCard: String = ""
-    var serviceDateCard: String = ""
-    var colorCard: String = ""
-    var dayAndHour: String = ""
-    var booleanTeste: Bool = false
+    //private var timer: Timer?
+    //let currentDatet = Date()
+    //var hidesCard: Bool = false
+    //var serviceNameCard: String = ""
+    //var serviceDateCard: String = ""
+    //var colorCard: String = ""
+    //var dayAndHour: String = ""
+    //var booleanTeste: Bool = false
     
     func setupService() {
         let currentDate = Date()
@@ -32,21 +34,24 @@ class HomeServicesViewModel {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
         let hasService = serviceDate >= currentDate
         if hasService {
-            hidesCard = hasService
+            guard var model = homeModel else { return }
+            
+            model.hidesCard = hasService
             let serviceName = UserDefaults.standard.string(forKey: "service_name")
             let serviceColor = UserDefaults.standard.string(forKey: "service_color")
 
-            serviceNameCard = serviceName ?? ""
-            serviceDateCard = serviceDate.formatted(
+            model.serviceNameCard = serviceName ?? ""
+            model.serviceDateCard = serviceDate.formatted(
                 date: .numeric,
                 time: .shortened
             )
-            colorCard = serviceColor ?? ""
+            model.colorCard = serviceColor ?? ""
             calculateDays(from: currentDate, to: serviceDate)
             calculeTime(from: currentDate, to: serviceDate)
             calculeTimeEnable(from: currentDate, to: serviceDate)
+            delegate?.onStartDataHomeService(model: model)
         }else{
-            hidesCard = hasService
+            homeModel?.hidesCard = hasService
             delegate?.timerBool(bool: hasService)
             UserDefaults.standard.removeObject(forKey: "service_date")
             UserDefaults.standard.removeObject(forKey: "service_name")
@@ -56,10 +61,10 @@ class HomeServicesViewModel {
     }
     
     func dateAndHourNow() -> String {
-        let dateLabel = currentDatet.formatted(
+        guard let dateLabel = homeModel?.currentDatet.formatted(
             date: .long,
             time: .omitted
-        )
+        ) else { return "" }
         return dateLabel
     }
     
@@ -71,11 +76,11 @@ class HomeServicesViewModel {
             fire: now.addingTimeInterval(Double(60 - currentSeconds + 1)),
             interval: 60,
             repeats: true,
-            block: { (t: Timer) in
-                self.setupService()
+            block: { [weak self] (t: Timer) in
+                self?.setupService()
             })
         RunLoop.main.add(timer, forMode: .default)
-        self.timer = timer
+        self.homeModel?.timer = timer
     }
     
     func calculateDays(from lhs: Date, to rhs: Date) {
@@ -85,19 +90,19 @@ class HomeServicesViewModel {
         guard let minutes = diffComponents.minute else { return }
         
         if days == 0 && hours >= 12 {
-            dayAndHour = "Faltam menos de 1 dia"
+            homeModel?.dayAndHour = "Faltam menos de 1 dia"
         }
         else if days == 1 {
-            dayAndHour = "Faltam 2 dias"
+            homeModel?.dayAndHour = "Faltam 2 dias"
         }
         else if hours != 0 && minutes == 0 {
-            dayAndHour = "Faltam \(String(describing: hours)) horas para o atendimento"
+            homeModel?.dayAndHour = "Faltam \(String(describing: hours)) horas para o atendimento"
         }
         else if hours == 0 && minutes > 0 {
-            dayAndHour = "Faltam \(String(describing: minutes)) minuto para o atendimento"
+            homeModel?.dayAndHour = "Faltam \(String(describing: minutes)) minuto para o atendimento"
         }
         else if hours != 0 && minutes > 0 {
-            dayAndHour = "Faltam \(String(describing: hours)) e \(String(describing: minutes)) minutos para o atendimento"
+            homeModel?.dayAndHour = "Faltam \(String(describing: hours)) e \(String(describing: minutes)) minutos para o atendimento"
         }
     }
     
@@ -106,7 +111,7 @@ class HomeServicesViewModel {
         guard let minutes = diffComponents.minute else { return }
         
         if minutes == 15 {
-            booleanTeste = true
+            homeModel?.booleanTeste = true
             delegate?.timerAlert(bool: true)
         }
     }
@@ -117,7 +122,7 @@ class HomeServicesViewModel {
         //guard let minutes = diffComponents.minute else { return }
         
         if hours == 2 {
-            booleanTeste = true
+            homeModel?.booleanTeste = true
             delegate?.timerEnable(bool: true)
         }
     }
