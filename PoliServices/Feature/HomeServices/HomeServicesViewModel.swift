@@ -6,11 +6,11 @@
 //
 
 import Foundation
+import UserNotifications
  
 protocol HomeServicesViewModelDelegate: AnyObject {
     func hidesTimerCard(bool: Bool)
     func onStartDataHomeService(model: HomeModel)
-    func hourAndMinuteNotice(hour: String, minute: String)
 }
 
 class HomeServicesViewModel {
@@ -24,6 +24,8 @@ class HomeServicesViewModel {
         let serviceDateInteger = UserDefaults.standard.integer(forKey: "service_date")
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
         let hasService = serviceDate >= currentDate
+        dispatchNotification(hour: captureHourSchedule(date: serviceDate),
+                             minute: captureMinuteSchedule(date: serviceDate))
         if hasService {
             let serviceName = UserDefaults.standard.string(forKey: "service_name")
             let serviceColor = UserDefaults.standard.string(forKey: "service_color")
@@ -31,9 +33,6 @@ class HomeServicesViewModel {
                 date: .numeric,
                 time: .shortened
               )
-            
-            delegate?.hourAndMinuteNotice(hour: captureHourSchedule(date: serviceDate),
-                                          minute: captureMinuteSchedule(date: serviceDate))
      
             disableServiceCancelButton(from: currentDate, to: serviceDate)
             
@@ -81,6 +80,26 @@ class HomeServicesViewModel {
         UserDefaults.standard.removeObject(forKey: "service_color")
         UserDefaults.standard.removeObject(forKey: "service_hour_start")
         UserDefaults.standard.removeObject(forKey: "service_Desabilita")
+    }
+    
+    func checkForPermission() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                return
+            case .denied:
+                return
+            case .notDetermined:
+                notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
+                    if didAllow {
+                        self.dispatchNotification(hour: "", minute: "")
+                    }
+                }
+            default:
+                return
+            }
+        }
     }
 }
 
@@ -148,6 +167,31 @@ private extension HomeServicesViewModel {
         dateFormatter.dateFormat = "HH"
         let resulteHour = dateFormatter.string(from: dateHour)
         return resulteHour
+    }
+    
+    private func dispatchNotification(hour: String, minute: String) {
+        let identifier = "my-alert"
+        let title = "Agendamento"
+        let body = "Falta 15 minutos para o serviço"
+        let hour = Int(hour)
+        let minute = Int(minute)
+        let isDaily = true
+
+        let notificationCenter = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+
+        let calendar = Calendar.current
+        var dateComponents = DateComponents(calendar: calendar, timeZone: TimeZone.current)
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: isDaily)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+        notificationCenter.add(request)
     }
     
 }
