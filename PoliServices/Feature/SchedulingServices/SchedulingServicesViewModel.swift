@@ -9,17 +9,16 @@ import Foundation
 
 class SchedulingServicesViewModel {
     
-    var name: String
-    var duration: Int
-    var color: String
+    let schedulingModel: SchedulingModel
     
     init(name: String, duration: Int, color: String) {
-        self.name = name
-        self.duration = duration
-        self.color = color
+        let model = SchedulingModel(name: name,
+                                    duration: duration,
+                                    color: color)
+        self.schedulingModel = model
     }
     
-    func hourStart() -> String {
+    private func hourStart() -> String {
         let date = Date()
         let df = DateFormatter()
         df.dateFormat = "h:mm a"
@@ -30,8 +29,8 @@ class SchedulingServicesViewModel {
     
     func saveDataScheduling() {
         let start = hourStart()
-        UserDefaults.standard.set(name, forKey: "service_name")
-        UserDefaults.standard.set(color, forKey: "service_color")
+        UserDefaults.standard.set(schedulingModel.name, forKey: "service_name")
+        UserDefaults.standard.set(schedulingModel.color, forKey: "service_color")
         UserDefaults.standard.set(start, forKey: "service_hour_start")
     }
 }

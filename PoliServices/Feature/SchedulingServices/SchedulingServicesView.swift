@@ -11,7 +11,7 @@ class SchedulingServicesView: UIView {
     
     // MARK: - Propeties
     
-    lazy var titleService: UILabel = {
+    private lazy var titleService: UILabel = {
         let label = UILabel()
         label.text = "Selecine a data e hora para reservar"
         label.font = UIFont.systemFont(ofSize: 28)
@@ -58,7 +58,7 @@ class SchedulingServicesView: UIView {
     
     // MARK: - Function
     
-    func setupData(setup: SchedulingServicesViewModel) {
+    func setupData(setup: SchedulingModel) {
         datePicker.date = Calendar.current.date(byAdding: .minute, value: setup.duration, to: Date()) ?? Date()
     }
 }

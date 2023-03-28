@@ -31,7 +31,7 @@ class AlertServiceView: UIView {
         return view
     }()
     
-    lazy var serviceCancelButton: UIButton = {
+    private lazy var serviceCancelButton: UIButton = {
         let button = UIButton(configuration: .tinted())
         button.setTitle("Cancelar", for: .normal)
         button.layer.cornerRadius = 27
@@ -44,7 +44,7 @@ class AlertServiceView: UIView {
         return button
     }()
     
-    lazy var serviceSaveButton: UIButton = {
+    private lazy var serviceSaveButton: UIButton = {
         let button = UIButton(configuration: .tinted())
         button.setTitle("Ok", for: .normal)
         button.layer.cornerRadius = 27

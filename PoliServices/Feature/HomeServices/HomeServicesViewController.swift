@@ -6,14 +6,14 @@
 //
 
 import UIKit
+import UserNotifications
 
 class HomeServicesViewController: UIViewController {
     
     // MARK: - Properties
     
-    let homeServiceView = HomeServicesView()
-    let viewModel: HomeServicesViewModel
-    var count = 0
+    private let homeServiceView = HomeServicesView()
+    private let viewModel: HomeServicesViewModel
     
     override func loadView() {
         view = homeServiceView
@@ -38,17 +38,15 @@ class HomeServicesViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         homeServiceView.addGestureRecognizer(tapGesture)
         viewModel.delegate = self
+        homeServiceView.subTitle.text = viewModel.dateAndHourNow()
+        checkForPermission()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         view.backgroundColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1)
-        //viewModel.delegate = self
         viewModel.setupService()
-        //homeServiceView.setParameter(model: viewModel)
-        //homeServiceView.setParameter(model:)
-        //self.homeServiceView.layoutIfNeeded()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -57,25 +55,58 @@ class HomeServicesViewController: UIViewController {
         view.backgroundColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1)
     }
     
+    // MARK: - Functions
+    
+    private func checkForPermission() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                return
+            case .denied:
+                return
+            case .notDetermined:
+                notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
+                    if didAllow {
+                        self.dispatchNotification(hour: "", minute: "")
+                    }
+                }
+            default:
+                return
+            }
+        }
+    }
+    
+    private func dispatchNotification(hour: String, minute: String) {
+        let identifier = "my-alert"
+        let title = "Agendamento"
+        let body = "Falta 15 minutos para o serviço"
+        let hour = Int(hour)
+        let minute = Int(minute)
+        let isDaily = true
+
+        let notificationCenter = UNUserNotificationCenter.current()
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+
+        let calendar = Calendar.current
+        var dateComponents = DateComponents(calendar: calendar, timeZone: TimeZone.current)
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: isDaily)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+        notificationCenter.add(request)
+    }
+    
     @objc func handleTap() {
-        let serviceDetailService = ServiceDetailService()
-        let serviceDetailViewModel = ServiceDetailViewModel(serviceName: serviceDetailService.serviceNameRec ?? "",
-                                                            hourStart: serviceDetailService.hourStart ?? "",
-                                                            serviceDateInteger: serviceDetailService.serviceDateInteger,
-                                                            colorIcon: serviceDetailService.colorIconSave ?? "",
-                                                            desabilityButton: serviceDetailService.desabily ?? "")
-        
+        let serviceDetailViewModel = ServiceDetailViewModel()
         let serviceDetailViewController = ServiceDetailViewController(viewModel: serviceDetailViewModel)
         serviceDetailViewController.delegate = self
         navigationController?.pushViewController(serviceDetailViewController, animated: true)
-    }
-    
-    func alertNumber(title: String, message: String) {
-        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        controller.addAction(.init(title: "OK", style: .default, handler: { alert in
-            self.handleTap()
-        }))
-        present(controller, animated: true)
     }
 }
 
@@ -83,7 +114,6 @@ class HomeServicesViewController: UIViewController {
 
 extension HomeServicesViewController: HomeServicesViewDelegate {
     func buttonService() {
-        count = 0
         let newServicesService = NewServicesService()
         let newServicesViewModel = NewServicesViewModel(service: newServicesService)
         let recipe = NewServicesViewController(viewModel: newServicesViewModel)
@@ -96,22 +126,15 @@ extension HomeServicesViewController: HomeServicesViewDelegate {
 // MARK: - HomeServicesViewModelDelegate
 
 extension HomeServicesViewController: HomeServicesViewModelDelegate {
+    func hourAndMinuteNotice(hour: String, minute: String) {
+        dispatchNotification(hour: hour, minute: minute)
+    }
+    
     func onStartDataHomeService(model: HomeModel) {
         homeServiceView.setParameter(model: model)
     }
     
-    func timerEnable(bool: Bool) {
-        UserDefaults.standard.set(bool, forKey: "service_Desabilita")
-    }
-    
-    func timerAlert(bool: Bool) {
-        if bool == true && count == 0 {
-            alertNumber(title: "Agendamento", message: "Falta 15 minutos para o serviço")
-            count = 1
-        }
-    }
-    
-    func timerBool(bool: Bool) {
+    func hidesTimerCard(bool: Bool) {
         homeServiceView.setParameterHiden(values: bool)
     }
 }
@@ -121,7 +144,5 @@ extension HomeServicesViewController: HomeServicesViewModelDelegate {
 extension HomeServicesViewController: ServiceDetailViewControllerDelgate {
     func cancelService(value: Bool) {
         homeServiceView.setParameterHiden(values: !value)
-        //viewModel.removeDataSave()
-        count = 0
     }
 }

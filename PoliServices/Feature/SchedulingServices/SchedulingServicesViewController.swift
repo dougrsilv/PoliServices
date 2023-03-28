@@ -11,9 +11,9 @@ class SchedulingServicesViewController: UIViewController {
     
     // MARK: - Properties
     
-    let schedulingServicesView = SchedulingServicesView()
-    let viewModel: SchedulingServicesViewModel
-    let viewModelHome = HomeServicesViewModel()
+    private let schedulingServicesView = SchedulingServicesView()
+    private let viewModel: SchedulingServicesViewModel
+    private let viewModelHome = HomeServicesViewModel()
     
     // MARK: - Lifecycle
     
@@ -37,7 +37,7 @@ class SchedulingServicesViewController: UIViewController {
         backButton.title = title
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveClicked))
-        schedulingServicesView.setupData(setup: viewModel)
+        schedulingServicesView.setupData(setup: viewModel.schedulingModel)
     }
     
     // MARK: - Fuctions

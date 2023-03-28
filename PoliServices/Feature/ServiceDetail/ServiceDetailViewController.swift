@@ -15,8 +15,8 @@ class ServiceDetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    let serviceDetailView = ServiceDetailView()
-    let viewModel: ServiceDetailViewModel
+    private let serviceDetailView = ServiceDetailView()
+    private let viewModel: ServiceDetailViewModel
     
     weak var delegate: ServiceDetailViewControllerDelgate?
     
@@ -43,8 +43,8 @@ class ServiceDetailViewController: UIViewController {
         let backButton = UIBarButtonItem()
         backButton.title = ""
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-        
-        serviceDetailView.setupDate(setup: viewModel)
+        viewModel.delegate = self
+        viewModel.bindDataServiceDetail()
     }
 }
 
@@ -62,9 +62,21 @@ extension ServiceDetailViewController: ServiceDetailViewDelegate {
     }
 }
 
+// MARK: - ServiceDetailViewModelDelegate
+
+extension ServiceDetailViewController: ServiceDetailViewModelDelegate {
+    func setupDataServiceModel(model: ServiceDetailModel) {
+        serviceDetailView.setupDate(setup: model)
+        serviceDetailView.serviceDetailCardView.setupDate(setup: model)
+    }
+}
+
+// MARK: - AlertServiceViewControllerDelegate
+
 extension ServiceDetailViewController: AlertServiceViewControllerDelegate {
     func cancelCard(value: Bool) {
         serviceDetailView.stackViewService.isHidden = value
+        viewModel.removeDataSave()
         delegate?.cancelService(value: value)
     }
 }

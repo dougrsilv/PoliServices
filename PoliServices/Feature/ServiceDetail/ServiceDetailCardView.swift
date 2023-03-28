@@ -11,7 +11,7 @@ class ServiceDetailCardView: UIView {
     
     // MARK: - Properties
     
-    lazy var titleServiceDetail: UILabel = {
+    private lazy var titleServiceDetail: UILabel = {
         let label = UILabel()
         label.text = "Próximo Serviço"
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -19,7 +19,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var titleLastCard: UILabel = {
+    private lazy var titleLastCard: UILabel = {
         let label = UILabel()
         label.text = "Nome do serviço"
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -28,7 +28,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var dateStartTitleDetailCard: UILabel = {
+    private lazy var dateStartTitleDetailCard: UILabel = {
         let label = UILabel()
         label.text = "Data Início"
         label.font = UIFont.boldSystemFont(ofSize: 12)
@@ -37,7 +37,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var valueStartDateDetailCard: UILabel = {
+    private lazy var valueStartDateDetailCard: UILabel = {
         let label = UILabel()
         label.text = "03 de janeiro de 2023"
         label.font = UIFont.systemFont(ofSize: 12)
@@ -46,7 +46,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var hourTitleStartDetailCard: UILabel = {
+    private lazy var hourTitleStartDetailCard: UILabel = {
         let label = UILabel()
         label.text = "Hora Início"
         label.font = UIFont.boldSystemFont(ofSize: 12)
@@ -55,7 +55,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var hourStartDetailCard: UILabel = {
+    private lazy var hourStartDetailCard: UILabel = {
         let label = UILabel()
         label.text = "11:00 AM"
         label.font = UIFont.systemFont(ofSize: 12)
@@ -64,7 +64,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var dateFinishTitleDetailCard: UILabel = {
+    private lazy var dateFinishTitleDetailCard: UILabel = {
         let label = UILabel()
         label.text = "Data Encerramento"
         label.font = UIFont.boldSystemFont(ofSize: 12)
@@ -73,7 +73,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var valueFinishDateDetailCard: UILabel = {
+    private lazy var valueFinishDateDetailCard: UILabel = {
         let label = UILabel()
         label.text = "04 de janeiro de 2023"
         label.font = UIFont.systemFont(ofSize: 12)
@@ -82,7 +82,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var hourTitleFinishDetailCard: UILabel = {
+    private lazy var hourTitleFinishDetailCard: UILabel = {
         let label = UILabel()
         label.text = "Hora de Encerramento"
         label.font = UIFont.boldSystemFont(ofSize: 12)
@@ -91,7 +91,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var hourFinishDetailCard: UILabel = {
+    private lazy var hourFinishDetailCard: UILabel = {
         let label = UILabel()
         label.text = "12:00 AM"
         label.font = UIFont.systemFont(ofSize: 12)
@@ -100,7 +100,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var requestTitleDetailCard: UILabel = {
+    private lazy var requestTitleDetailCard: UILabel = {
         let label = UILabel()
         label.text = "Data de Solicitação"
         label.font = UIFont.boldSystemFont(ofSize: 12)
@@ -109,7 +109,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var requestDateDetailCard: UILabel = {
+    private lazy var requestDateDetailCard: UILabel = {
         let label = UILabel()
         label.text = "21 de dezembro de 2022"
         label.font = UIFont.systemFont(ofSize: 12)
@@ -118,7 +118,7 @@ class ServiceDetailCardView: UIView {
         return label
     }()
     
-    lazy var imageLastCard: UIImageView = {
+    private lazy var imageLastCard: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "book.fill")
         image.tintColor = .black
@@ -126,7 +126,7 @@ class ServiceDetailCardView: UIView {
         return image
     }()
     
-    lazy var lastCardView: UIView = {
+    private lazy var lastCardView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 12
         view.layer.borderWidth = 2
@@ -208,6 +208,18 @@ class ServiceDetailCardView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Function
+    
+    func setupDate(setup: ServiceDetailModel) {
+        titleLastCard.text = setup.serviceName
+        valueStartDateDetailCard.text = setup.startDate
+        hourStartDetailCard.text = setup.hourStart
+        valueFinishDateDetailCard.text = setup.finishDate
+        hourFinishDetailCard.text = setup.finishHour
+        requestDateDetailCard.text = setup.fequestDate
+        imageLastCard.tintColor =  UIColor(hexString: setup.colorIconSave)
     }
     
 }

@@ -7,27 +7,47 @@
 
 import Foundation
 
+protocol ServiceDetailViewModelDelegate: AnyObject {
+    func setupDataServiceModel(model: ServiceDetailModel)
+}
+
 class ServiceDetailViewModel {
     
-    var serviceName: String
-    var startHour: String
-    var colorIcon: String
-    var desabilityButton: String
-    var serviceDateInteger: Int
-    let dateFormatter = DateFormatter()
+    private let dateFormatter = DateFormatter()
+    private var serviceDetailModel: ServiceDetailModel?
+    weak var delegate: ServiceDetailViewModelDelegate?
     
-    init(serviceName: String, hourStart: String,
-         serviceDateInteger: Int,
-         colorIcon: String,
-         desabilityButton: String) {
-        self.serviceName = serviceName
-        self.startHour = hourStart
-        self.serviceDateInteger = serviceDateInteger
-        self.colorIcon = colorIcon
-        self.desabilityButton = desabilityButton
+    private let serviceName = UserDefaults.standard.string(forKey: "service_name")
+    private let serviceDateInteger = UserDefaults.standard.integer(forKey: "service_date")
+    private let hourStart = UserDefaults.standard.string(forKey: "service_hour_start")
+    private let colorIconSave = UserDefaults.standard.string(forKey: "service_color")
+    private let desabilyButton = UserDefaults.standard.string(forKey: "service_Desabilita")
+    
+    func bindDataServiceDetail() {
+        let model = ServiceDetailModel(serviceName: serviceName ?? "",
+                                       hourStart: hourStart ?? "",
+                                       colorIconSave: colorIconSave ?? "",
+                                       desabilyButton: desabilyButton ?? "",
+                                       startDate: formatStartDate(),
+                                       finishDate: formatFinishDate(),
+                                       finishHour: formatFinishHour(),
+                                       fequestDate: formatRequestDate())
+        
+        self.serviceDetailModel = model
+        delegate?.setupDataServiceModel(model: model)
     }
     
-    func setupStartDate() -> String {
+    func removeDataSave() {
+        UserDefaults.standard.removeObject(forKey: "service_date")
+        UserDefaults.standard.removeObject(forKey: "service_name")
+        UserDefaults.standard.removeObject(forKey: "service_color")
+        UserDefaults.standard.removeObject(forKey: "service_hour_start")
+        UserDefaults.standard.removeObject(forKey: "service_Desabilita")
+    }
+}
+
+private extension ServiceDetailViewModel {
+    func formatStartDate() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
        let startDate = serviceDate.formatted(
             date: .complete,
@@ -36,7 +56,7 @@ class ServiceDetailViewModel {
         return startDate
     }
     
-    func setupFinishDate() -> String {
+    func formatFinishDate() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
         let finishDate = serviceDate.formatted(
             date: .complete,
@@ -45,14 +65,14 @@ class ServiceDetailViewModel {
         return finishDate
     }
     
-    func setupFinishHour() -> String {
+    func formatFinishHour() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
         dateFormatter.dateFormat = "hh:mm a"
         let date = dateFormatter.string(from: serviceDate)
         return date
     }
     
-    func setupRequestDate() -> String {
+    func formatRequestDate() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
         let requestDate = serviceDate.formatted(
             date: .complete,

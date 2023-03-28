@@ -18,7 +18,7 @@ class NewServicesView: UIView {
     weak var delegate: NewServicesViewDelegate?
     
     var data: [Data] = []
-    let cell = "cell"
+    private let cell = "cell"
     
     lazy var activity: UIActivityIndicatorView = {
         let activity = UIActivityIndicatorView()

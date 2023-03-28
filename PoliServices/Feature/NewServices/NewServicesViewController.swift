@@ -11,8 +11,8 @@ class NewServicesViewController: UICollectionViewController {
     
     // MARK: - Properties
     
-    let newServicesView = NewServicesView()
-    let viewModel: NewServicesViewModel
+    private let newServicesView = NewServicesView()
+    private let viewModel: NewServicesViewModel
     
     init(viewModel: NewServicesViewModel) {
         self.viewModel = viewModel
@@ -36,8 +36,14 @@ class NewServicesViewController: UICollectionViewController {
         title = "Novo Serviço"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelClicked))
         view.backgroundColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1)
-        
-        viewModel.buscarService { service in
+        bindSetupData()
+    }
+    
+    // MARK: - Fuctions
+    
+    func bindSetupData() {
+        viewModel.buscarService { [weak self] service in
+            guard let self = self else { return }
             switch service {
             case let .failure(erro):
                 print(erro)
@@ -48,8 +54,6 @@ class NewServicesViewController: UICollectionViewController {
             }
         }
     }
-    
-    // MARK: - Fuctions
     
     @objc func cancelClicked() {
         dismiss(animated: true)

@@ -11,13 +11,13 @@ class NewServicesCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    lazy var imageServices: UIImageView = {
+    private lazy var imageServices: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
-    lazy var titleService: UILabel = {
+    private lazy var titleService: UILabel = {
         let label = UILabel()
         label.text = "Teste"
         label.font = UIFont.boldSystemFont(ofSize: 20)

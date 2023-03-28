@@ -17,7 +17,7 @@ class ServiceDetailView: UIView {
     
     weak var delegate: ServiceDetailViewDelegate?
     
-    lazy var serviceButton: UIButton = {
+    private lazy var serviceButton: UIButton = {
         let button = UIButton(configuration: .tinted())
         button.setTitle("Cancelar serviço", for: .normal)
         button.layer.cornerRadius = 27
@@ -54,7 +54,6 @@ class ServiceDetailView: UIView {
         addSubview(stackViewService)
         
         NSLayoutConstraint.activate([
-            
             stackViewService.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 22),
             stackViewService.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 22),
             stackViewService.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -22),
@@ -67,15 +66,8 @@ class ServiceDetailView: UIView {
     
     // MARK: - Fuctions
     
-    func setupDate(setup: ServiceDetailViewModel) {
-        serviceDetailCardView.titleLastCard.text = setup.serviceName
-        serviceDetailCardView.valueStartDateDetailCard.text = setup.setupStartDate()
-        serviceDetailCardView.hourStartDetailCard.text = setup.startHour
-        serviceDetailCardView.valueFinishDateDetailCard.text = setup.setupFinishDate()
-        serviceDetailCardView.hourFinishDetailCard.text = setup.setupFinishHour()
-        serviceDetailCardView.requestDateDetailCard.text = setup.setupRequestDate()
-        serviceDetailCardView.imageLastCard.tintColor =  UIColor(hexString: setup.colorIcon)
-        if setup.desabilityButton == "1" {
+    func setupDate(setup: ServiceDetailModel) {
+        if setup.desabilyButton == "1" {
             serviceButton.isEnabled = false
         }
     }

@@ -15,9 +15,9 @@ class AlertServiceViewController: UIViewController {
     
     // MARK: - Properties
     
-    let alertServiceView = AlertServiceView()
-    let viewModel: AlertServiceViewModel
-    let postService = PostAnalitcsService()
+    private let alertServiceView = AlertServiceView()
+    private let viewModel: AlertServiceViewModel
+    private let postService = PostAnalitcsService()
     
     weak var delegate: AlertServiceViewControllerDelegate?
     
@@ -40,8 +40,14 @@ class AlertServiceViewController: UIViewController {
         super.viewDidLoad()
         alertServiceView.delegate = self
         show()
-        
-        viewModel.reasonService { service in
+        bindDataOptionalCancel()
+    }
+    
+    // MARK: - Function
+    
+    private func bindDataOptionalCancel() {
+        viewModel.reasonService { [weak self] service in
+            guard let self = self else { return }
             switch service {
             case let .failure(erro):
                 print(erro)
@@ -52,9 +58,7 @@ class AlertServiceViewController: UIViewController {
         }
     }
     
-    // MARK: - Function
-    
-    func show() {
+    private func show() {
         UIView.animate(withDuration: 0.25) {
             self.view.alpha = 1
         } completion: { done in
@@ -73,8 +77,9 @@ class AlertServiceViewController: UIViewController {
 
 extension AlertServiceViewController: AlertServiceViewDelegate {
     func clickButtonSave(reason: String) {
-        postService.post(Recibo: reason) { salvo in
+        postService.post(Recibo: reason) { [weak self] salvo in
             DispatchQueue.main.async {
+                guard let self = self else { return }
                 self.delegate?.cancelCard(value: salvo)
                 UIView.animate(withDuration: 0.25) {
                     self.view.alpha = 1

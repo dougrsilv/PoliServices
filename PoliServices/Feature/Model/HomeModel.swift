@@ -8,12 +8,10 @@
 import Foundation
 
 struct HomeModel {
-    var timer: Timer?
-    let currentDatet = Date()
+    let currentDatet: String
     var hidesCard: Bool = false
     var serviceNameCard: String
     var serviceDateCard: String
     var colorCard: String
     var dayAndHour: String
-    var booleanTeste: Bool = false
 }
