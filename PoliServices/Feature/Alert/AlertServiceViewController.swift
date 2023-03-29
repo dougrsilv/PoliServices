@@ -77,7 +77,7 @@ class AlertServiceViewController: UIViewController {
 
 extension AlertServiceViewController: AlertServiceViewDelegate {
     func clickButtonSave(reason: String) {
-        postService.post(Recibo: reason) { [weak self] salvo in
+        postService.post(recibo: reason) { [weak self] salvo in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.delegate?.cancelCard(value: salvo)

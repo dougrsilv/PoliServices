@@ -9,12 +9,12 @@ import UIKit
 
 class PostAnalitcsService {
     
-    func post(Recibo: String, completion: @escaping(_ salvo: Bool) -> Void) {
+    func post(recibo: String, completion: @escaping(_ salvo: Bool) -> Void) {
         
         let baseURL = "https://run.mocky.io/v3/9c225953-f8b1-4210-bc58-a95a61c6dc9b"
         
         let paramtros: [String: Any] = [
-            "reason": Recibo
+            "reason": recibo
         ]
         
         guard let url = URL(string: baseURL) else { return }
