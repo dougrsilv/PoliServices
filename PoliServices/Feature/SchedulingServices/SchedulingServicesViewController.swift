@@ -38,6 +38,7 @@ class SchedulingServicesViewController: UIViewController {
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveClicked))
         schedulingServicesView.setupData(setup: viewModel.schedulingModel)
+        viewModel.checkForPermission()
     }
     
     // MARK: - Fuctions
@@ -45,6 +46,7 @@ class SchedulingServicesViewController: UIViewController {
     @objc func saveClicked() {
         UserDefaults.standard.set(schedulingServicesView.datePicker.date.timeIntervalSince1970, forKey: "service_date")
         viewModel.saveDataScheduling()
+        viewModel.scheduleNotificationTime()
         dismiss(animated: true)
     }
 }

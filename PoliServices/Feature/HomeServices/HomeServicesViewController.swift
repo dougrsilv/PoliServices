@@ -39,7 +39,6 @@ class HomeServicesViewController: UIViewController {
         homeServiceView.addGestureRecognizer(tapGesture)
         viewModel.delegate = self
         homeServiceView.subTitle.text = viewModel.dateAndHourNow()
-        viewModel.checkForPermission()
     }
     
     override func viewWillAppear(_ animated: Bool) {
