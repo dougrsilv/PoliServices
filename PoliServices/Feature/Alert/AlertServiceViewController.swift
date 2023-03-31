@@ -81,7 +81,7 @@ class AlertServiceViewController: UIViewController {
 extension AlertServiceViewController: AlertServiceViewDelegate {
     func clickButtonSave(reason: String) {
         self.alertServiceView.activity.startAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 7.0) {
             self.postService.post(recibo: reason) { [weak self] salvo in
                 DispatchQueue.main.async {
                     guard let self = self else { return }
