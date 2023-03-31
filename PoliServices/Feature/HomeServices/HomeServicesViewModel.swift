@@ -6,25 +6,18 @@
 //
 
 import Foundation
+import UserNotifications
  
 protocol HomeServicesViewModelDelegate: AnyObject {
-    func timerBool(bool: Bool)
-    func timerAlert(bool: Bool)
-    func timerEnable(bool: Bool)
+    func hidesTimerCard(bool: Bool)
+    func onStartDataHomeService(model: HomeModel)
 }
 
 class HomeServicesViewModel {
     
     weak var delegate: HomeServicesViewModelDelegate?
-    
-    private var timer: Timer?
-    let currentDatet = Date()
-    var hidesCard: Bool = false
-    var serviceNameCard: String = ""
-    var serviceDateCard: String = ""
-    var colorCard: String = ""
-    var dayAndHour: String = ""
-    var booleanTeste: Bool = false
+    private var homeModel: HomeModel?
+    private let currentDate = Date()
     
     func setupService() {
         let currentDate = Date()
@@ -32,31 +25,33 @@ class HomeServicesViewModel {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
         let hasService = serviceDate >= currentDate
         if hasService {
-            hidesCard = hasService
             let serviceName = UserDefaults.standard.string(forKey: "service_name")
             let serviceColor = UserDefaults.standard.string(forKey: "service_color")
-
-            serviceNameCard = serviceName ?? ""
-            serviceDateCard = serviceDate.formatted(
+            let dateFormat =  serviceDate.formatted(
                 date: .numeric,
                 time: .shortened
-            )
-            colorCard = serviceColor ?? ""
-            calculateDays(from: currentDate, to: serviceDate)
-            calculeTime(from: currentDate, to: serviceDate)
-            calculeTimeEnable(from: currentDate, to: serviceDate)
-        }else{
-            hidesCard = hasService
-            delegate?.timerBool(bool: hasService)
-            UserDefaults.standard.removeObject(forKey: "service_date")
-            UserDefaults.standard.removeObject(forKey: "service_name")
-            UserDefaults.standard.removeObject(forKey: "service_color")
-            UserDefaults.standard.removeObject(forKey: "service_Desabilita")
+              )
+     
+            disableServiceCancelButton(from: currentDate, to: serviceDate)
+            
+            let model = HomeModel(currentDatet: dateAndHourNow(),
+                                  hidesCard: hasService,
+                                  serviceNameCard: serviceName ?? "",
+                                  serviceDateCard:dateFormat,
+                                  colorCard: serviceColor ?? "",
+                                  dayAndHour: messageCalculateCardServiceTime(from: currentDate, to: serviceDate))
+            
+            self.homeModel = model
+            delegate?.onStartDataHomeService(model: model)
+        } else {
+            homeModel?.hidesCard = hasService
+            delegate?.hidesTimerCard(bool: hasService)
+            removeDataSave()
         }       
     }
     
     func dateAndHourNow() -> String {
-        let dateLabel = currentDatet.formatted(
+        let dateLabel = currentDate.formatted(
             date: .long,
             time: .omitted
         )
@@ -71,54 +66,56 @@ class HomeServicesViewModel {
             fire: now.addingTimeInterval(Double(60 - currentSeconds + 1)),
             interval: 60,
             repeats: true,
-            block: { (t: Timer) in
-                self.setupService()
+            block: { [weak self] (t: Timer) in
+                self?.setupService()
             })
         RunLoop.main.add(timer, forMode: .default)
-        self.timer = timer
     }
     
-    func calculateDays(from lhs: Date, to rhs: Date) {
+    func removeDataSave() {
+        UserDefaults.standard.removeObject(forKey: "service_date")
+        UserDefaults.standard.removeObject(forKey: "service_name")
+        UserDefaults.standard.removeObject(forKey: "service_color")
+        UserDefaults.standard.removeObject(forKey: "service_hour_start")
+        UserDefaults.standard.removeObject(forKey: "service_Desabilita")
+    }
+}
+
+private extension HomeServicesViewModel {
+    
+    func messageCalculateCardServiceTime(from lhs: Date, to rhs: Date) -> String {
         let diffComponents = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: lhs, to: rhs)
-        guard let days = diffComponents.day else { return }
-        guard let hours = diffComponents.hour else { return }
-        guard let minutes = diffComponents.minute else { return }
         
-        if days == 0 && hours >= 12 {
-            dayAndHour = "Faltam menos de 1 dia"
+        if let days = diffComponents.day,
+           let hours = diffComponents.hour,
+           let minutes = diffComponents.minute {
+            
+            if days == 0 && hours >= 12 {
+               return "Faltam menos de 1 dia"
+            }
+            else if days == 1 {
+               return "Faltam 2 dias"
+            }
+            else if hours != 0 && minutes == 0 {
+                return "Faltam \(String(describing: hours)) horas para o atendimento"
+            }
+            else if hours == 0 && minutes > 0 {
+                return "Faltam \(String(describing: minutes)) minuto para o atendimento"
+            }
+            else if hours != 0 && minutes > 0 {
+                return "Faltam \(String(describing: hours)) e \(String(describing: minutes)) minutos para o atendimento"
+            }
         }
-        else if days == 1 {
-            dayAndHour = "Faltam 2 dias"
-        }
-        else if hours != 0 && minutes == 0 {
-            dayAndHour = "Faltam \(String(describing: hours)) horas para o atendimento"
-        }
-        else if hours == 0 && minutes > 0 {
-            dayAndHour = "Faltam \(String(describing: minutes)) minuto para o atendimento"
-        }
-        else if hours != 0 && minutes > 0 {
-            dayAndHour = "Faltam \(String(describing: hours)) e \(String(describing: minutes)) minutos para o atendimento"
-        }
+        return ""
     }
     
-    func calculeTime(from lhs: Date, to rhs: Date) {
-        let diffComponents = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: lhs, to: rhs)
-        guard let minutes = diffComponents.minute else { return }
-        
-        if minutes == 15 {
-            booleanTeste = true
-            delegate?.timerAlert(bool: true)
-        }
-    }
-    
-    func calculeTimeEnable(from lhs: Date, to rhs: Date) {
+    func disableServiceCancelButton(from lhs: Date, to rhs: Date) {
         let diffComponents = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: lhs, to: rhs)
         guard let hours = diffComponents.hour else { return }
         //guard let minutes = diffComponents.minute else { return }
         
         if hours == 2 {
-            booleanTeste = true
-            delegate?.timerEnable(bool: true)
+            UserDefaults.standard.set(true, forKey: "service_Desabilita")
         }
     }
 }

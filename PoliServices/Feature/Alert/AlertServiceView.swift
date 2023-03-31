@@ -31,7 +31,7 @@ class AlertServiceView: UIView {
         return view
     }()
     
-    lazy var serviceCancelButton: UIButton = {
+    private lazy var serviceCancelButton: UIButton = {
         let button = UIButton(configuration: .tinted())
         button.setTitle("Cancelar", for: .normal)
         button.layer.cornerRadius = 27
@@ -44,7 +44,7 @@ class AlertServiceView: UIView {
         return button
     }()
     
-    lazy var serviceSaveButton: UIButton = {
+    private lazy var serviceSaveButton: UIButton = {
         let button = UIButton(configuration: .tinted())
         button.setTitle("Ok", for: .normal)
         button.layer.cornerRadius = 27
@@ -55,6 +55,12 @@ class AlertServiceView: UIView {
         button.addTarget(self, action: #selector(onSaveEnterTap), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    lazy var activity: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView(style: .large)
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        return activity
     }()
     
     // MARK: - Lifecycle
@@ -74,6 +80,7 @@ class AlertServiceView: UIView {
         alertView.layer.cornerRadius = 12
         
         addSubview(alertView)
+        addSubview(activity)
         alertView.addSubview(reasonServiceView)
         alertView.addSubview(serviceCancelButton)
         alertView.addSubview(serviceSaveButton)
@@ -92,6 +99,9 @@ class AlertServiceView: UIView {
         serviceSaveButton.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -10).isActive = true
         serviceSaveButton.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -10).isActive = true
         serviceSaveButton.widthAnchor.constraint(equalToConstant: 91).isActive = true
+        
+        activity.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activity.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {

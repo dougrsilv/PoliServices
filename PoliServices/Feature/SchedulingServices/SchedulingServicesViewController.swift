@@ -11,9 +11,9 @@ class SchedulingServicesViewController: UIViewController {
     
     // MARK: - Properties
     
-    let schedulingServicesView = SchedulingServicesView()
-    let viewModel: SchedulingServicesViewModel
-    let viewModelHome = HomeServicesViewModel()
+    private let schedulingServicesView = SchedulingServicesView()
+    private let viewModel: SchedulingServicesViewModel
+    private let viewModelHome = HomeServicesViewModel()
     
     // MARK: - Lifecycle
     
@@ -37,26 +37,16 @@ class SchedulingServicesViewController: UIViewController {
         backButton.title = title
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveClicked))
-        schedulingServicesView.setupData(setup: viewModel)
+        schedulingServicesView.setupData(setup: viewModel.schedulingModel)
+        viewModel.checkForPermission()
     }
     
     // MARK: - Fuctions
     
-    func hourStart() -> String {
-        let date = Date()
-        let df = DateFormatter()
-        df.dateFormat = "h:mm a"
-        df.locale = Locale(identifier: "en_US_POSIX")
-        let dateString = df.string(from: date)
-        return dateString
-    }
-    
     @objc func saveClicked() {
         UserDefaults.standard.set(schedulingServicesView.datePicker.date.timeIntervalSince1970, forKey: "service_date")
-        UserDefaults.standard.set(viewModel.name, forKey: "service_name")
-        UserDefaults.standard.set(viewModel.color, forKey: "service_color")
-        let start = hourStart()
-        UserDefaults.standard.set(start, forKey: "service_hour_start")
+        viewModel.saveDataScheduling()
+        viewModel.scheduleNotificationTime()
         dismiss(animated: true)
     }
 }

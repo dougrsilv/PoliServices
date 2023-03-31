@@ -63,7 +63,6 @@ class HomeServicesView: UIView {
     
     lazy var lastServiceView: LastServiceView = {
         let view = LastServiceView()
-        view.widthAnchor.constraint(equalToConstant: 331).isActive = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -151,12 +150,12 @@ class HomeServicesView: UIView {
         delegate?.buttonService()
     }
     
-    func setParameter(model: HomeServicesViewModel) {
+    func setParameter(model: HomeModel) {
         lastServiceView.titleLastCard.text = model.serviceNameCard
         lastServiceView.dateAndHourLastCard.text = model.serviceDateCard
         lastServiceView.lastCardView.backgroundColor = UIColor(hexString: model.colorCard)
         lastServiceView.schedulingLastCard.text = model.dayAndHour
-        subTitle.text = model.dateAndHourNow()
+        subTitle.text = model.currentDatet
         
         UIView.animate(withDuration: 0.3) {
             self.lastServiceView.alpha = model.hidesCard ? 1 : 0

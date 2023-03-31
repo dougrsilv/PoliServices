@@ -16,8 +16,8 @@ class ReasonServiceView: UIView {
     
     // MARK: - Properties
     
-    let pickerView = UIPickerView()
-    var products: [ReasonModel] = []
+    private let pickerView = UIPickerView()
+    private var products: [ReasonModel] = []
     weak var delegate: ReasonServiceViewDelegate?
     
     lazy var reasonSelectService: UITextField = {
@@ -36,7 +36,7 @@ class ReasonServiceView: UIView {
         return field
     }()
     
-    lazy var reasonTextService: InputTextView = {
+    private lazy var reasonTextService: InputTextView = {
         let tv = InputTextView()
         tv.placeholderText = "Digite o motivo.."
         tv.font = UIFont.systemFont(ofSize: 16)
@@ -51,7 +51,7 @@ class ReasonServiceView: UIView {
         return tv
     }()
     
-    lazy var characterCountLabel: UILabel = {
+    private lazy var characterCountLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = UIFont.systemFont(ofSize: 14)
@@ -61,7 +61,7 @@ class ReasonServiceView: UIView {
         return label
     }()
     
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [reasonSelectService, reasonTextService])
         stack.axis = .vertical
         stack.spacing = 4
@@ -102,7 +102,7 @@ class ReasonServiceView: UIView {
     
     // MARK: - Fuctions
     
-    func checkMaxLength(_ textView: UITextView) {
+    private func checkMaxLength(_ textView: UITextView) {
         if (textView.text.count) > 100 {
             textView.deleteBackward()
         }

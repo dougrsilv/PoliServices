@@ -7,76 +7,77 @@
 
 import Foundation
 
+protocol ServiceDetailViewModelDelegate: AnyObject {
+    func setupDataServiceModel(model: ServiceDetailModel)
+}
+
 class ServiceDetailViewModel {
     
-    var serviceName: String = ""
-    var startDate: String = ""
-    var startHour: String = ""
-    var finishDate: String = ""
-    var finishHour: String = ""
-    var requestDate: String = ""
-    var colorIcon: String = ""
-    var desabilityButton: String = ""
-    let dateFormatter = DateFormatter()
+    private let dateFormatter = DateFormatter()
+    private var serviceDetailModel: ServiceDetailModel?
+    weak var delegate: ServiceDetailViewModelDelegate?
     
-    let serviceNameRec = UserDefaults.standard.string(forKey: "service_name")
-    let serviceDateInteger = UserDefaults.standard.integer(forKey: "service_date")
-    let hourStart = UserDefaults.standard.string(forKey: "service_hour_start")
-    let colorIconSave = UserDefaults.standard.string(forKey: "service_color")
-    let desabily = UserDefaults.standard.string(forKey: "service_Desabilita")
+    private let serviceName = UserDefaults.standard.string(forKey: "service_name")
+    private let serviceDateInteger = UserDefaults.standard.integer(forKey: "service_date")
+    private let hourStart = UserDefaults.standard.string(forKey: "service_hour_start")
+    private let colorIconSave = UserDefaults.standard.string(forKey: "service_color")
+    private let desabilyButton = UserDefaults.standard.string(forKey: "service_Desabilita")
     
-    // Nome do Serviço
-    func setupServiceName() {
-        self.serviceName = serviceNameRec ?? ""
+    func bindDataServiceDetail() {
+        let model = ServiceDetailModel(serviceName: serviceName ?? "",
+                                       hourStart: hourStart ?? "",
+                                       colorIconSave: colorIconSave ?? "",
+                                       desabilyButton: desabilyButton ?? "",
+                                       startDate: formatStartDate(),
+                                       finishDate: formatFinishDate(),
+                                       finishHour: formatFinishHour(),
+                                       fequestDate: formatRequestDate())
+        
+        self.serviceDetailModel = model
+        delegate?.setupDataServiceModel(model: model)
     }
     
-    // Start Date
-    func setupStartDate() {
+    func removeDataSave() {
+        UserDefaults.standard.removeObject(forKey: "service_date")
+        UserDefaults.standard.removeObject(forKey: "service_name")
+        UserDefaults.standard.removeObject(forKey: "service_color")
+        UserDefaults.standard.removeObject(forKey: "service_hour_start")
+        UserDefaults.standard.removeObject(forKey: "service_Desabilita")
+    }
+}
+
+private extension ServiceDetailViewModel {
+    func formatStartDate() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
-        startDate = serviceDate.formatted(
+       let startDate = serviceDate.formatted(
             date: .complete,
             time: .omitted
         )
+        return startDate
     }
     
-    // Start Time
-    func setupStartHour() {
-        startHour = hourStart ?? ""
-    }
-    
-    // Finish Date
-    func setupFinishDate() {
+    func formatFinishDate() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
-        finishDate = serviceDate.formatted(
+        let finishDate = serviceDate.formatted(
             date: .complete,
             time: .omitted
         )
+        return finishDate
     }
     
-    // Finish Time
-    func setupFinishHour() {
+    func formatFinishHour() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
         dateFormatter.dateFormat = "hh:mm a"
         let date = dateFormatter.string(from: serviceDate)
-        finishHour = date
+        return date
     }
     
-    // Request Date
-    func setupRequestDate() {
+    func formatRequestDate() -> String {
         let serviceDate = Date(timeIntervalSince1970: TimeInterval(serviceDateInteger))
-        requestDate = serviceDate.formatted(
+        let requestDate = serviceDate.formatted(
             date: .complete,
             time: .omitted
         )
-    }
-    
-    // Icon Color
-    func setupColorIcon() {
-        colorIcon = colorIconSave ?? ""
-    }
-    
-    // Desability Button
-    func setupDesabilityButton() {
-        desabilityButton = desabily ?? ""
+        return requestDate
     }
 }

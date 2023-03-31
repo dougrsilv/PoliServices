@@ -15,14 +15,17 @@ class AlertServiceViewController: UIViewController {
     
     // MARK: - Properties
     
-    let alertServiceView = AlertServiceView()
-    let viewModel: AlertServiceViewModel
-    let postService = PostAnalitcsService()
+    private let alertServiceView = AlertServiceView()
+    private let viewModel: AlertServiceViewModel
+    private let postService: PostAnalitcsService
     
     weak var delegate: AlertServiceViewControllerDelegate?
     
-    init(viewModel: AlertServiceViewModel) {
+
+    
+    init(viewModel: AlertServiceViewModel, postService: PostAnalitcsService) {
         self.viewModel = viewModel
+        self.postService = postService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -40,8 +43,14 @@ class AlertServiceViewController: UIViewController {
         super.viewDidLoad()
         alertServiceView.delegate = self
         show()
-        
-        viewModel.reasonService { service in
+        bindDataOptionalCancel()
+    }
+    
+    // MARK: - Function
+    
+    private func bindDataOptionalCancel() {
+        viewModel.reasonService { [weak self] service in
+            guard let self = self else { return }
             switch service {
             case let .failure(erro):
                 print(erro)
@@ -52,9 +61,7 @@ class AlertServiceViewController: UIViewController {
         }
     }
     
-    // MARK: - Function
-    
-    func show() {
+    private func show() {
         UIView.animate(withDuration: 0.25) {
             self.view.alpha = 1
         } completion: { done in
@@ -73,17 +80,22 @@ class AlertServiceViewController: UIViewController {
 
 extension AlertServiceViewController: AlertServiceViewDelegate {
     func clickButtonSave(reason: String) {
-        postService.post(Recibo: reason) { salvo in
-            DispatchQueue.main.async {
-                self.delegate?.cancelCard(value: salvo)
-                UIView.animate(withDuration: 0.25) {
-                    self.view.alpha = 1
-                } completion: { done in
-                    if done {
-                        UIView.animate(withDuration: 0.25) {
-                            self.alertServiceView.alertView.center = self.view.center
-                            self.alertServiceView.alertView.alpha = 0
-                            self.dismiss(animated: false)
+        self.alertServiceView.activity.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 7.0) {
+            self.postService.post(recibo: reason) { [weak self] salvo in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    self.alertServiceView.activity.stopAnimating()
+                    self.delegate?.cancelCard(value: salvo)
+                    UIView.animate(withDuration: 0.25) {
+                        self.view.alpha = 1
+                    } completion: { done in
+                        if done {
+                            UIView.animate(withDuration: 0.25) {
+                                self.alertServiceView.alertView.center = self.view.center
+                                self.alertServiceView.alertView.alpha = 0
+                                self.dismiss(animated: false)
+                            }
                         }
                     }
                 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ServiceDetailViewDelegate: AnyObject {
-    func clickButton()
+    func clickCancelButton()
 }
 
 class ServiceDetailView: UIView {
@@ -17,7 +17,7 @@ class ServiceDetailView: UIView {
     
     weak var delegate: ServiceDetailViewDelegate?
     
-    lazy var serviceButton: UIButton = {
+    private lazy var serviceButton: UIButton = {
         let button = UIButton(configuration: .tinted())
         button.setTitle("Cancelar serviço", for: .normal)
         button.layer.cornerRadius = 27
@@ -54,7 +54,6 @@ class ServiceDetailView: UIView {
         addSubview(stackViewService)
         
         NSLayoutConstraint.activate([
-            
             stackViewService.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 22),
             stackViewService.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 22),
             stackViewService.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -22),
@@ -67,21 +66,14 @@ class ServiceDetailView: UIView {
     
     // MARK: - Fuctions
     
-    func setupDate(setup: ServiceDetailViewModel) {
-        serviceDetailCardView.titleLastCard.text = setup.serviceName
-        serviceDetailCardView.valueStartDateDetailCard.text = setup.startDate
-        serviceDetailCardView.hourStartDetailCard.text = setup.startHour
-        serviceDetailCardView.valueFinishDateDetailCard.text = setup.finishDate
-        serviceDetailCardView.hourFinishDetailCard.text = setup.finishHour
-        serviceDetailCardView.requestDateDetailCard.text = setup.requestDate
-        serviceDetailCardView.imageLastCard.tintColor =  UIColor(hexString: setup.colorIcon)
-        if setup.desabilityButton == "1" {
+    func setupDate(setup: ServiceDetailModel) {
+        if setup.desabilyButton == "1" {
             serviceButton.isEnabled = false
         }
     }
     
     @objc func onEnterTap() {
-        delegate?.clickButton()
+        delegate?.clickCancelButton()
     }
     
 }

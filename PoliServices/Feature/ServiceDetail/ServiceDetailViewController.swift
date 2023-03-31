@@ -15,8 +15,8 @@ class ServiceDetailViewController: UIViewController {
     
     // MARK: - Properties
     
-    let serviceDetailView = ServiceDetailView()
-    let viewModel: ServiceDetailViewModel
+    private let serviceDetailView = ServiceDetailView()
+    private let viewModel: ServiceDetailViewModel
     
     weak var delegate: ServiceDetailViewControllerDelgate?
     
@@ -43,27 +43,19 @@ class ServiceDetailViewController: UIViewController {
         let backButton = UIBarButtonItem()
         backButton.title = ""
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-        
-        viewModel.setupServiceName()
-        viewModel.setupStartDate()
-        viewModel.setupStartHour()
-        viewModel.setupFinishDate()
-        viewModel.setupFinishHour()
-        viewModel.setupRequestDate()
-        viewModel.setupColorIcon()
-        viewModel.setupDesabilityButton()
-        
-        serviceDetailView.setupDate(setup: viewModel)
+        viewModel.delegate = self
+        viewModel.bindDataServiceDetail()
     }
 }
 
 // MARK: - ServiceDetailViewDelegate
 
 extension ServiceDetailViewController: ServiceDetailViewDelegate {
-    func clickButton() {
+    func clickCancelButton() {
         let service = ReasonServiceService()
+        let postAnalitcsService = PostAnalitcsService()
         let viewModel = AlertServiceViewModel(service: service)
-        let recipe = AlertServiceViewController(viewModel: viewModel)
+        let recipe = AlertServiceViewController(viewModel: viewModel, postService: postAnalitcsService)
         recipe.delegate = self
         let navBarOnModal: UINavigationController = UINavigationController(rootViewController: recipe)
         navBarOnModal.modalPresentationStyle = .overFullScreen
@@ -71,9 +63,21 @@ extension ServiceDetailViewController: ServiceDetailViewDelegate {
     }
 }
 
+// MARK: - ServiceDetailViewModelDelegate
+
+extension ServiceDetailViewController: ServiceDetailViewModelDelegate {
+    func setupDataServiceModel(model: ServiceDetailModel) {
+        serviceDetailView.setupDate(setup: model)
+        serviceDetailView.serviceDetailCardView.setupDate(setup: model)
+    }
+}
+
+// MARK: - AlertServiceViewControllerDelegate
+
 extension ServiceDetailViewController: AlertServiceViewControllerDelegate {
     func cancelCard(value: Bool) {
         serviceDetailView.stackViewService.isHidden = value
+        viewModel.removeDataSave()
         delegate?.cancelService(value: value)
     }
 }
