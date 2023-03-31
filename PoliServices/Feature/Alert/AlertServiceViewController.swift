@@ -17,12 +17,15 @@ class AlertServiceViewController: UIViewController {
     
     private let alertServiceView = AlertServiceView()
     private let viewModel: AlertServiceViewModel
-    private let postService = PostAnalitcsService()
+    private let postService: PostAnalitcsService
     
     weak var delegate: AlertServiceViewControllerDelegate?
     
-    init(viewModel: AlertServiceViewModel) {
+
+    
+    init(viewModel: AlertServiceViewModel, postService: PostAnalitcsService) {
         self.viewModel = viewModel
+        self.postService = postService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -77,18 +80,22 @@ class AlertServiceViewController: UIViewController {
 
 extension AlertServiceViewController: AlertServiceViewDelegate {
     func clickButtonSave(reason: String) {
-        postService.post(recibo: reason) { [weak self] salvo in
-            DispatchQueue.main.async {
-                guard let self = self else { return }
-                self.delegate?.cancelCard(value: salvo)
-                UIView.animate(withDuration: 0.25) {
-                    self.view.alpha = 1
-                } completion: { done in
-                    if done {
-                        UIView.animate(withDuration: 0.25) {
-                            self.alertServiceView.alertView.center = self.view.center
-                            self.alertServiceView.alertView.alpha = 0
-                            self.dismiss(animated: false)
+        self.alertServiceView.activity.startAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) {
+            self.postService.post(recibo: reason) { [weak self] salvo in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    self.alertServiceView.activity.stopAnimating()
+                    self.delegate?.cancelCard(value: salvo)
+                    UIView.animate(withDuration: 0.25) {
+                        self.view.alpha = 1
+                    } completion: { done in
+                        if done {
+                            UIView.animate(withDuration: 0.25) {
+                                self.alertServiceView.alertView.center = self.view.center
+                                self.alertServiceView.alertView.alpha = 0
+                                self.dismiss(animated: false)
+                            }
                         }
                     }
                 }

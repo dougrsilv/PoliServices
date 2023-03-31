@@ -57,6 +57,12 @@ class AlertServiceView: UIView {
         return button
     }()
     
+    lazy var activity: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView(style: .large)
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        return activity
+    }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -74,6 +80,7 @@ class AlertServiceView: UIView {
         alertView.layer.cornerRadius = 12
         
         addSubview(alertView)
+        addSubview(activity)
         alertView.addSubview(reasonServiceView)
         alertView.addSubview(serviceCancelButton)
         alertView.addSubview(serviceSaveButton)
@@ -92,6 +99,9 @@ class AlertServiceView: UIView {
         serviceSaveButton.trailingAnchor.constraint(equalTo: alertView.trailingAnchor, constant: -10).isActive = true
         serviceSaveButton.bottomAnchor.constraint(equalTo: alertView.bottomAnchor, constant: -10).isActive = true
         serviceSaveButton.widthAnchor.constraint(equalToConstant: 91).isActive = true
+        
+        activity.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activity.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {

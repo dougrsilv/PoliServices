@@ -53,8 +53,9 @@ class ServiceDetailViewController: UIViewController {
 extension ServiceDetailViewController: ServiceDetailViewDelegate {
     func clickCancelButton() {
         let service = ReasonServiceService()
+        let postAnalitcsService = PostAnalitcsService()
         let viewModel = AlertServiceViewModel(service: service)
-        let recipe = AlertServiceViewController(viewModel: viewModel)
+        let recipe = AlertServiceViewController(viewModel: viewModel, postService: postAnalitcsService)
         recipe.delegate = self
         let navBarOnModal: UINavigationController = UINavigationController(rootViewController: recipe)
         navBarOnModal.modalPresentationStyle = .overFullScreen
