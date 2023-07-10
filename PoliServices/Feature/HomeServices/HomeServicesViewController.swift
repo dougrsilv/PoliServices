@@ -8,19 +8,25 @@
 import UIKit
 import UserNotifications
 
+protocol HomeServicesViewControllerLogic: AnyObject {
+    func hidesTimerCardResults(bool: Bool)
+    func onStartDataHomeServiceResults(model: HomeModel)
+    func dateAndHourNowFormated(data: String)
+}
+
 class HomeServicesViewController: UIViewController {
     
     // MARK: - Properties
     
     private let homeServiceView = HomeServicesView()
-    private let viewModel: HomeServicesViewModel
+    private let homeInteractor: HomeInteractor
     
     override func loadView() {
         view = homeServiceView
     }
     
-    init(viewModel: HomeServicesViewModel) {
-        self.viewModel = viewModel
+    init(homeInteractor: HomeInteractor) {
+        self.homeInteractor = homeInteractor
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,18 +40,17 @@ class HomeServicesViewController: UIViewController {
         super.viewDidLoad()
         homeServiceView.delegate = self
         view.backgroundColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1)
-        viewModel.initTimer()
+        homeInteractor.initTimer()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         homeServiceView.addGestureRecognizer(tapGesture)
-        viewModel.delegate = self
-        homeServiceView.subTitle.text = viewModel.dateAndHourNow()
+        homeInteractor.captureDateAndHour()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         view.backgroundColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1)
-        viewModel.setupService()
+        homeInteractor.setupService()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,15 +82,19 @@ extension HomeServicesViewController: HomeServicesViewDelegate {
     }
 }
 
-// MARK: - HomeServicesViewModelDelegate
+// MARK: - HomeServicesViewControllerLogic
 
-extension HomeServicesViewController: HomeServicesViewModelDelegate {
-    func onStartDataHomeService(model: HomeModel) {
-        homeServiceView.setParameter(model: model)
+extension HomeServicesViewController: HomeServicesViewControllerLogic {
+    func dateAndHourNowFormated(data: String)  {
+        homeServiceView.subTitle.text = data
     }
     
-    func hidesTimerCard(bool: Bool) {
+    func hidesTimerCardResults(bool: Bool) {
         homeServiceView.setParameterHiden(values: bool)
+    }
+    
+    func onStartDataHomeServiceResults(model: HomeModel) {
+        homeServiceView.setParameter(model: model)
     }
 }
 

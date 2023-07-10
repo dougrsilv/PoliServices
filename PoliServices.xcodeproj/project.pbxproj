@@ -23,6 +23,9 @@
 		DAC228C829BBB528001936F9 /* AlertServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC228C729BBB528001936F9 /* AlertServiceView.swift */; };
 		DAC3A27B29B11D320081B72C /* HomeServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3A27A29B11D320081B72C /* HomeServicesViewModel.swift */; };
 		DAC3A27D29B14B5F0081B72C /* SchedulingServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3A27C29B14B5F0081B72C /* SchedulingServicesViewModel.swift */; };
+		DAC596962A5B788600495470 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC596952A5B788600495470 /* HomeInteractor.swift */; };
+		DAC596992A5B78B000495470 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC596982A5B78B000495470 /* HomePresenter.swift */; };
+		DAC5969B2A5B78C800495470 /* HomeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC5969A2A5B78C800495470 /* HomeConfiguration.swift */; };
 		DAC7723629D1E137002A0DB5 /* SchedulingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC7723529D1E137002A0DB5 /* SchedulingModel.swift */; };
 		DACD289829BE5FA5005DB832 /* ServiceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACD289729BE5FA5005DB832 /* ServiceDetailViewModel.swift */; };
 		DACE2D7729BAB17C00226581 /* AlertServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACE2D7629BAB17C00226581 /* AlertServiceViewController.swift */; };
@@ -62,6 +65,9 @@
 		DAC228C729BBB528001936F9 /* AlertServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceView.swift; sourceTree = "<group>"; };
 		DAC3A27A29B11D320081B72C /* HomeServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServicesViewModel.swift; sourceTree = "<group>"; };
 		DAC3A27C29B14B5F0081B72C /* SchedulingServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingServicesViewModel.swift; sourceTree = "<group>"; };
+		DAC596952A5B788600495470 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		DAC596982A5B78B000495470 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		DAC5969A2A5B78C800495470 /* HomeConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConfiguration.swift; sourceTree = "<group>"; };
 		DAC7723529D1E137002A0DB5 /* SchedulingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingModel.swift; sourceTree = "<group>"; };
 		DACD289729BE5FA5005DB832 /* ServiceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewModel.swift; sourceTree = "<group>"; };
 		DACE2D7629BAB17C00226581 /* AlertServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +204,9 @@
 				DAD8B22F29AEE1600049ED6D /* InformationView.swift */,
 				DAD8B23129AEEE170049ED6D /* LastServiceView.swift */,
 				DAC3A27A29B11D320081B72C /* HomeServicesViewModel.swift */,
+				DAC596952A5B788600495470 /* HomeInteractor.swift */,
+				DAC596982A5B78B000495470 /* HomePresenter.swift */,
+				DAC5969A2A5B78C800495470 /* HomeConfiguration.swift */,
 			);
 			path = HomeServices;
 			sourceTree = "<group>";
@@ -313,7 +322,9 @@
 				DAEEA4DF29B6144900846A71 /* UIColor.swift in Sources */,
 				DA0847A929D09EEF0064E347 /* ServiceDetailModel.swift in Sources */,
 				DAEEA4DC29B6129100846A71 /* NewServicesViewModel.swift in Sources */,
+				DAC596992A5B78B000495470 /* HomePresenter.swift in Sources */,
 				DAEEA4E229B625D000846A71 /* NewServicesService.swift in Sources */,
+				DAC596962A5B788600495470 /* HomeInteractor.swift in Sources */,
 				DAC3A27D29B14B5F0081B72C /* SchedulingServicesViewModel.swift in Sources */,
 				DAB703B729BD0E6400AA2AB1 /* ReasonModel.swift in Sources */,
 				DA04E19429B0EE10008F0D24 /* SchedulingServicesViewController.swift in Sources */,
@@ -324,6 +335,7 @@
 				DAB703B529BD01C300AA2AB1 /* InputTextView.swift in Sources */,
 				DAD18EB629B031010024906A /* NewServicesCell.swift in Sources */,
 				DA04E19629B0EE62008F0D24 /* SchedulingServicesView.swift in Sources */,
+				DAC5969B2A5B78C800495470 /* HomeConfiguration.swift in Sources */,
 				DACFBBD529B375F2000129CF /* ServiceModel.swift in Sources */,
 				DAC228C829BBB528001936F9 /* AlertServiceView.swift in Sources */,
 				DAB703B929BD0F7900AA2AB1 /* ReasonServiceService.swift in Sources */,
