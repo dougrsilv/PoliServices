@@ -7,15 +7,19 @@
 
 import UIKit
 
+protocol NewServicesViewControllerLogic: AnyObject {
+    func servicesData(data: [Data])
+}
+
 class NewServicesViewController: UICollectionViewController {
     
     // MARK: - Properties
     
     private let newServicesView = NewServicesView()
-    private let viewModel: NewServicesViewModel
+    private let newServicesInteractor: NewServicesInteractorLogic
     
-    init(viewModel: NewServicesViewModel) {
-        self.viewModel = viewModel
+    init(newServicesInteractor: NewServicesInteractorLogic) {
+        self.newServicesInteractor = newServicesInteractor
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,28 +36,14 @@ class NewServicesViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         newServicesView.delegate = self
+        newServicesInteractor.buscarService()
         
         title = "Novo Serviço"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelClicked))
         view.backgroundColor = UIColor(red: 0.925, green: 0.925, blue: 0.925, alpha: 1)
-        bindSetupData()
     }
     
     // MARK: - Fuctions
-    
-    func bindSetupData() {
-        viewModel.buscarService { [weak self] service in
-            guard let self = self else { return }
-            switch service {
-            case let .failure(erro):
-                print(erro)
-            case .success(_):
-                self.newServicesView.data = self.viewModel.serviceViewModel
-                self.newServicesView.collectionView.reloadData()
-                self.newServicesView.activity.stopAnimating()
-            }
-        }
-    }
     
     @objc func cancelClicked() {
         dismiss(animated: true)
@@ -67,5 +57,11 @@ extension NewServicesViewController: NewServicesViewDelegate {
                                                     color: color)
         let schedulingServicesViewController = SchedulingServicesViewController(viewModel: viewModel)
         navigationController?.pushViewController(schedulingServicesViewController, animated: true)
+    }
+}
+
+extension NewServicesViewController: NewServicesViewControllerLogic {
+    func servicesData(data: [Data]) {
+        newServicesView.setupData(data: data)
     }
 }

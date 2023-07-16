@@ -13,7 +13,7 @@ class SchedulingServicesViewController: UIViewController {
     
     private let schedulingServicesView = SchedulingServicesView()
     private let viewModel: SchedulingServicesViewModel
-    private let viewModelHome = HomeServicesViewModel()
+//    private let viewModelHome = HomeServicesViewModel()
     
     // MARK: - Lifecycle
     

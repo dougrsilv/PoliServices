@@ -21,7 +21,6 @@
 		DAB703B929BD0F7900AA2AB1 /* ReasonServiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703B829BD0F7900AA2AB1 /* ReasonServiceService.swift */; };
 		DAB703BB29BD149A00AA2AB1 /* AlertServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703BA29BD149A00AA2AB1 /* AlertServiceViewModel.swift */; };
 		DAC228C829BBB528001936F9 /* AlertServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC228C729BBB528001936F9 /* AlertServiceView.swift */; };
-		DAC3A27B29B11D320081B72C /* HomeServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3A27A29B11D320081B72C /* HomeServicesViewModel.swift */; };
 		DAC3A27D29B14B5F0081B72C /* SchedulingServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC3A27C29B14B5F0081B72C /* SchedulingServicesViewModel.swift */; };
 		DAC596962A5B788600495470 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC596952A5B788600495470 /* HomeInteractor.swift */; };
 		DAC596992A5B78B000495470 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC596982A5B78B000495470 /* HomePresenter.swift */; };
@@ -40,7 +39,9 @@
 		DAE6A1C929BA61FE00AEDD2E /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE6A1C829BA61FE00AEDD2E /* ServiceDetailViewController.swift */; };
 		DAE6A1CB29BA63B500AEDD2E /* ServiceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE6A1CA29BA63B500AEDD2E /* ServiceDetailView.swift */; };
 		DAE6A1CD29BA69BC00AEDD2E /* ServiceDetailCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE6A1CC29BA69BC00AEDD2E /* ServiceDetailCardView.swift */; };
-		DAEEA4DC29B6129100846A71 /* NewServicesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEEA4DB29B6129100846A71 /* NewServicesViewModel.swift */; };
+		DAECCE6A2A6434E700866385 /* NewServicesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAECCE692A6434E700866385 /* NewServicesInteractor.swift */; };
+		DAECCE6C2A64352400866385 /* NewServicesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAECCE6B2A64352400866385 /* NewServicesPresenter.swift */; };
+		DAECCE6E2A64355000866385 /* NewServicesConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAECCE6D2A64355000866385 /* NewServicesConfiguration.swift */; };
 		DAEEA4DF29B6144900846A71 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEEA4DE29B6144900846A71 /* UIColor.swift */; };
 		DAEEA4E229B625D000846A71 /* NewServicesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEEA4E129B625D000846A71 /* NewServicesService.swift */; };
 		DAEF06EF29BCDB210077BC81 /* ReasonServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAEF06EE29BCDB210077BC81 /* ReasonServiceView.swift */; };
@@ -63,7 +64,6 @@
 		DAB703B829BD0F7900AA2AB1 /* ReasonServiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonServiceService.swift; sourceTree = "<group>"; };
 		DAB703BA29BD149A00AA2AB1 /* AlertServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceViewModel.swift; sourceTree = "<group>"; };
 		DAC228C729BBB528001936F9 /* AlertServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceView.swift; sourceTree = "<group>"; };
-		DAC3A27A29B11D320081B72C /* HomeServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServicesViewModel.swift; sourceTree = "<group>"; };
 		DAC3A27C29B14B5F0081B72C /* SchedulingServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingServicesViewModel.swift; sourceTree = "<group>"; };
 		DAC596952A5B788600495470 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		DAC596982A5B78B000495470 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -82,7 +82,9 @@
 		DAE6A1C829BA61FE00AEDD2E /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		DAE6A1CA29BA63B500AEDD2E /* ServiceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailView.swift; sourceTree = "<group>"; };
 		DAE6A1CC29BA69BC00AEDD2E /* ServiceDetailCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailCardView.swift; sourceTree = "<group>"; };
-		DAEEA4DB29B6129100846A71 /* NewServicesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesViewModel.swift; sourceTree = "<group>"; };
+		DAECCE692A6434E700866385 /* NewServicesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesInteractor.swift; sourceTree = "<group>"; };
+		DAECCE6B2A64352400866385 /* NewServicesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesPresenter.swift; sourceTree = "<group>"; };
+		DAECCE6D2A64355000866385 /* NewServicesConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesConfiguration.swift; sourceTree = "<group>"; };
 		DAEEA4DE29B6144900846A71 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		DAEEA4E129B625D000846A71 /* NewServicesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesService.swift; sourceTree = "<group>"; };
 		DAEF06EE29BCDB210077BC81 /* ReasonServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonServiceView.swift; sourceTree = "<group>"; };
@@ -175,7 +177,9 @@
 				DAD18EB129B026F50024906A /* NewServicesViewController.swift */,
 				DAD18EB329B02D120024906A /* NewServicesView.swift */,
 				DAD18EB529B031010024906A /* NewServicesCell.swift */,
-				DAEEA4DB29B6129100846A71 /* NewServicesViewModel.swift */,
+				DAECCE692A6434E700866385 /* NewServicesInteractor.swift */,
+				DAECCE6B2A64352400866385 /* NewServicesPresenter.swift */,
+				DAECCE6D2A64355000866385 /* NewServicesConfiguration.swift */,
 			);
 			path = NewServices;
 			sourceTree = "<group>";
@@ -203,7 +207,6 @@
 				DAD8B22D29AECAFA0049ED6D /* HomeServicesView.swift */,
 				DAD8B22F29AEE1600049ED6D /* InformationView.swift */,
 				DAD8B23129AEEE170049ED6D /* LastServiceView.swift */,
-				DAC3A27A29B11D320081B72C /* HomeServicesViewModel.swift */,
 				DAC596952A5B788600495470 /* HomeInteractor.swift */,
 				DAC596982A5B78B000495470 /* HomePresenter.swift */,
 				DAC5969A2A5B78C800495470 /* HomeConfiguration.swift */,
@@ -314,6 +317,7 @@
 				DAD8B23229AEEE170049ED6D /* LastServiceView.swift in Sources */,
 				DACE2D7729BAB17C00226581 /* AlertServiceViewController.swift in Sources */,
 				DAD8B22E29AECAFA0049ED6D /* HomeServicesView.swift in Sources */,
+				DAECCE6E2A64355000866385 /* NewServicesConfiguration.swift in Sources */,
 				DAD18EB429B02D120024906A /* NewServicesView.swift in Sources */,
 				DAD8B22C29AEC9B20049ED6D /* HomeServicesViewController.swift in Sources */,
 				DAE6A1CD29BA69BC00AEDD2E /* ServiceDetailCardView.swift in Sources */,
@@ -321,7 +325,6 @@
 				DAC7723629D1E137002A0DB5 /* SchedulingModel.swift in Sources */,
 				DAEEA4DF29B6144900846A71 /* UIColor.swift in Sources */,
 				DA0847A929D09EEF0064E347 /* ServiceDetailModel.swift in Sources */,
-				DAEEA4DC29B6129100846A71 /* NewServicesViewModel.swift in Sources */,
 				DAC596992A5B78B000495470 /* HomePresenter.swift in Sources */,
 				DAEEA4E229B625D000846A71 /* NewServicesService.swift in Sources */,
 				DAC596962A5B788600495470 /* HomeInteractor.swift in Sources */,
@@ -342,9 +345,10 @@
 				DA3CB21E29CA574700B0840C /* HomeModel.swift in Sources */,
 				DACD289829BE5FA5005DB832 /* ServiceDetailViewModel.swift in Sources */,
 				DAB703BB29BD149A00AA2AB1 /* AlertServiceViewModel.swift in Sources */,
+				DAECCE6A2A6434E700866385 /* NewServicesInteractor.swift in Sources */,
+				DAECCE6C2A64352400866385 /* NewServicesPresenter.swift in Sources */,
 				DAD18EB229B026F50024906A /* NewServicesViewController.swift in Sources */,
 				DAE6A1CB29BA63B500AEDD2E /* ServiceDetailView.swift in Sources */,
-				DAC3A27B29B11D320081B72C /* HomeServicesViewModel.swift in Sources */,
 				DAE6A1C929BA61FE00AEDD2E /* ServiceDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

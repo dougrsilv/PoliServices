@@ -60,6 +60,12 @@ class NewServicesView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setupData(data: [Data]) {
+        self.data = data
+        collectionView.reloadData()
+        activity.stopAnimating()
+    }
 }
 
 // MARK: - Delegate

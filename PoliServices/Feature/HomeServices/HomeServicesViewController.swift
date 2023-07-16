@@ -19,13 +19,13 @@ class HomeServicesViewController: UIViewController {
     // MARK: - Properties
     
     private let homeServiceView = HomeServicesView()
-    private let homeInteractor: HomeInteractor
+    private let homeInteractor: HomeInteractorLogic
     
     override func loadView() {
         view = homeServiceView
     }
     
-    init(homeInteractor: HomeInteractor) {
+    init(homeInteractor: HomeInteractorLogic) {
         self.homeInteractor = homeInteractor
         super.init(nibName: nil, bundle: nil)
     }
@@ -74,9 +74,10 @@ class HomeServicesViewController: UIViewController {
 extension HomeServicesViewController: HomeServicesViewDelegate {
     func buttonService() {
         let newServicesService = NewServicesService()
-        let newServicesViewModel = NewServicesViewModel(service: newServicesService)
-        let recipe = NewServicesViewController(viewModel: newServicesViewModel)
-        let navBarOnModal: UINavigationController = UINavigationController(rootViewController: recipe)
+        let configuration = NewServicesConfiguration()
+        let newServicesConfiguration = configuration.build(service: newServicesService)
+        
+        let navBarOnModal: UINavigationController = UINavigationController(rootViewController: newServicesConfiguration)
         navBarOnModal.modalPresentationStyle = .fullScreen
         navigationController?.present(navBarOnModal, animated: true)
     }
