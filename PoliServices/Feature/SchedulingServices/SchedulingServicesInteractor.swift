@@ -1,22 +1,38 @@
 //
-//  SchedulingServicesViewModel.swift
+//  SchedulingServicesInteractor.swift
 //  PoliServices
 //
-//  Created by Douglas  Rodrigues  on 02/03/23.
+//  Created by Douglas  Rodrigues  on 16/07/23.
 //
 
 import Foundation
 import UserNotifications
 
-class SchedulingServicesViewModel {
+protocol SchedulingServicesInteractorLogic {
+    func checkForPermission()
+    func saveDataScheduling()
+    func scheduleNotificationTime()
+    func activateDataSchedulingModel()
+}
+
+class SchedulingServicesInteractor: SchedulingServicesInteractorLogic {
     
+    private let schedulingServicesPresenter: SchedulingServicesPresenterLogic
     let schedulingModel: SchedulingModel
     
-    init(name: String, duration: Int, color: String) {
+    init(schedulingServicesPresenter: SchedulingServicesPresenterLogic,
+         name: String,
+         duration: Int,
+         color: String) {
+        self.schedulingServicesPresenter = schedulingServicesPresenter
         let model = SchedulingModel(name: name,
                                     duration: duration,
                                     color: color)
         self.schedulingModel = model
+    }
+    
+    func activateDataSchedulingModel() {
+        self.schedulingServicesPresenter.byPassScheduling(model: schedulingModel)
     }
     
     private func hourStart() -> String {
@@ -114,5 +130,4 @@ class SchedulingServicesViewModel {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
         notificationCenter.add(request)
     }
-    
 }

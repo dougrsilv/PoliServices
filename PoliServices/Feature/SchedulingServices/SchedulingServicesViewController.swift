@@ -7,18 +7,21 @@
 
 import UIKit
 
+protocol SchedulingServicesViewControllerLogic: AnyObject {
+    func setupData(model: SchedulingModel)
+}
+
 class SchedulingServicesViewController: UIViewController {
     
     // MARK: - Properties
     
     private let schedulingServicesView = SchedulingServicesView()
-    private let viewModel: SchedulingServicesViewModel
-//    private let viewModelHome = HomeServicesViewModel()
+    private let  schedulingServicesInteractorLogic: SchedulingServicesInteractorLogic
     
     // MARK: - Lifecycle
     
-    init(viewModel: SchedulingServicesViewModel) {
-        self.viewModel = viewModel
+    init(schedulingServicesInteractorLogic: SchedulingServicesInteractorLogic) {
+        self.schedulingServicesInteractorLogic = schedulingServicesInteractorLogic
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -37,16 +40,24 @@ class SchedulingServicesViewController: UIViewController {
         backButton.title = title
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveClicked))
-        schedulingServicesView.setupData(setup: viewModel.schedulingModel)
-        viewModel.checkForPermission()
+        schedulingServicesInteractorLogic.checkForPermission()
+        schedulingServicesInteractorLogic.activateDataSchedulingModel()
     }
     
     // MARK: - Fuctions
     
     @objc func saveClicked() {
         UserDefaults.standard.set(schedulingServicesView.datePicker.date.timeIntervalSince1970, forKey: "service_date")
-        viewModel.saveDataScheduling()
-        viewModel.scheduleNotificationTime()
+        schedulingServicesInteractorLogic.saveDataScheduling()
+        schedulingServicesInteractorLogic.scheduleNotificationTime()
         dismiss(animated: true)
+    }
+}
+
+// MARK: - SchedulingServicesViewControllerLogic
+
+extension SchedulingServicesViewController: SchedulingServicesViewControllerLogic {
+    func setupData(model: SchedulingModel) {
+        schedulingServicesView.setupData(setup: model)
     }
 }

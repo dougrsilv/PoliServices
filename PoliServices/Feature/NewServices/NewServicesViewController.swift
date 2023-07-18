@@ -51,11 +51,9 @@ class NewServicesViewController: UICollectionViewController {
 }
 
 extension NewServicesViewController: NewServicesViewDelegate {
-    func typeService(service: String, duration: Int, color: String) {
-        let viewModel = SchedulingServicesViewModel(name: service,
-                                                    duration: duration,
-                                                    color: color)
-        let schedulingServicesViewController = SchedulingServicesViewController(viewModel: viewModel)
+    func typeService(service: String, duration: Int, color: String) {        
+        let config = SchedulingServicesConfiguration()
+        let schedulingServicesViewController = config.build(name: service, duration: duration, color: color)
         navigationController?.pushViewController(schedulingServicesViewController, animated: true)
     }
 }
