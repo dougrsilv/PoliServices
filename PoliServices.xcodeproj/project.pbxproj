@@ -16,10 +16,12 @@
 		DA0847A929D09EEF0064E347 /* ServiceDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0847A829D09EEF0064E347 /* ServiceDetailModel.swift */; };
 		DA3CB21E29CA574700B0840C /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3CB21D29CA574700B0840C /* HomeModel.swift */; };
 		DA7CB57029B8D96C00904E2A /* PostAnalitcsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7CB56F29B8D96B00904E2A /* PostAnalitcsService.swift */; };
+		DAA4BC922A76AB97006B8795 /* AlertServiceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4BC912A76AB97006B8795 /* AlertServiceInteractor.swift */; };
+		DAA4BC942A76ABAC006B8795 /* AlertServicePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4BC932A76ABAC006B8795 /* AlertServicePresenter.swift */; };
+		DAA4BC962A76ABCF006B8795 /* AlertServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA4BC952A76ABCF006B8795 /* AlertServiceConfiguration.swift */; };
 		DAB703B529BD01C300AA2AB1 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703B429BD01C300AA2AB1 /* InputTextView.swift */; };
 		DAB703B729BD0E6400AA2AB1 /* ReasonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703B629BD0E6400AA2AB1 /* ReasonModel.swift */; };
 		DAB703B929BD0F7900AA2AB1 /* ReasonServiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703B829BD0F7900AA2AB1 /* ReasonServiceService.swift */; };
-		DAB703BB29BD149A00AA2AB1 /* AlertServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB703BA29BD149A00AA2AB1 /* AlertServiceViewModel.swift */; };
 		DAC228C829BBB528001936F9 /* AlertServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC228C729BBB528001936F9 /* AlertServiceView.swift */; };
 		DAC596962A5B788600495470 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC596952A5B788600495470 /* HomeInteractor.swift */; };
 		DAC596992A5B78B000495470 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC596982A5B78B000495470 /* HomePresenter.swift */; };
@@ -61,10 +63,12 @@
 		DA0847A829D09EEF0064E347 /* ServiceDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailModel.swift; sourceTree = "<group>"; };
 		DA3CB21D29CA574700B0840C /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		DA7CB56F29B8D96B00904E2A /* PostAnalitcsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnalitcsService.swift; sourceTree = "<group>"; };
+		DAA4BC912A76AB97006B8795 /* AlertServiceInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceInteractor.swift; sourceTree = "<group>"; };
+		DAA4BC932A76ABAC006B8795 /* AlertServicePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServicePresenter.swift; sourceTree = "<group>"; };
+		DAA4BC952A76ABCF006B8795 /* AlertServiceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceConfiguration.swift; sourceTree = "<group>"; };
 		DAB703B429BD01C300AA2AB1 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		DAB703B629BD0E6400AA2AB1 /* ReasonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonModel.swift; sourceTree = "<group>"; };
 		DAB703B829BD0F7900AA2AB1 /* ReasonServiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonServiceService.swift; sourceTree = "<group>"; };
-		DAB703BA29BD149A00AA2AB1 /* AlertServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceViewModel.swift; sourceTree = "<group>"; };
 		DAC228C729BBB528001936F9 /* AlertServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceView.swift; sourceTree = "<group>"; };
 		DAC596952A5B788600495470 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		DAC596982A5B78B000495470 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -160,7 +164,9 @@
 				DACE2D7629BAB17C00226581 /* AlertServiceViewController.swift */,
 				DAC228C729BBB528001936F9 /* AlertServiceView.swift */,
 				DAEF06EE29BCDB210077BC81 /* ReasonServiceView.swift */,
-				DAB703BA29BD149A00AA2AB1 /* AlertServiceViewModel.swift */,
+				DAA4BC912A76AB97006B8795 /* AlertServiceInteractor.swift */,
+				DAA4BC932A76ABAC006B8795 /* AlertServicePresenter.swift */,
+				DAA4BC952A76ABCF006B8795 /* AlertServiceConfiguration.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -327,8 +333,10 @@
 				DAD18EB429B02D120024906A /* NewServicesView.swift in Sources */,
 				DAD8B22C29AEC9B20049ED6D /* HomeServicesViewController.swift in Sources */,
 				DAECCE722A64482500866385 /* SchedulingServicesPresenter.swift in Sources */,
+				DAA4BC942A76ABAC006B8795 /* AlertServicePresenter.swift in Sources */,
 				DAE6A1CD29BA69BC00AEDD2E /* ServiceDetailCardView.swift in Sources */,
 				4C55034529379F3600699589 /* AppDelegate.swift in Sources */,
+				DAA4BC922A76AB97006B8795 /* AlertServiceInteractor.swift in Sources */,
 				DAC7723629D1E137002A0DB5 /* SchedulingModel.swift in Sources */,
 				DAEEA4DF29B6144900846A71 /* UIColor.swift in Sources */,
 				DA0847A929D09EEF0064E347 /* ServiceDetailModel.swift in Sources */,
@@ -339,6 +347,7 @@
 				DA04E19429B0EE10008F0D24 /* SchedulingServicesViewController.swift in Sources */,
 				DA7CB57029B8D96C00904E2A /* PostAnalitcsService.swift in Sources */,
 				DAD8B23029AEE1600049ED6D /* InformationView.swift in Sources */,
+				DAA4BC962A76ABCF006B8795 /* AlertServiceConfiguration.swift in Sources */,
 				DAECCE702A6447F800866385 /* SchedulingServicesInteractor.swift in Sources */,
 				DAEF06EF29BCDB210077BC81 /* ReasonServiceView.swift in Sources */,
 				4C55034729379F3600699589 /* SceneDelegate.swift in Sources */,
@@ -351,7 +360,6 @@
 				DAB703B929BD0F7900AA2AB1 /* ReasonServiceService.swift in Sources */,
 				DA3CB21E29CA574700B0840C /* HomeModel.swift in Sources */,
 				DACD289829BE5FA5005DB832 /* ServiceDetailViewModel.swift in Sources */,
-				DAB703BB29BD149A00AA2AB1 /* AlertServiceViewModel.swift in Sources */,
 				DAECCE6A2A6434E700866385 /* NewServicesInteractor.swift in Sources */,
 				DAECCE6C2A64352400866385 /* NewServicesPresenter.swift in Sources */,
 				DAECCE742A64485000866385 /* SchedulingServicesConfiguration.swift in Sources */,
