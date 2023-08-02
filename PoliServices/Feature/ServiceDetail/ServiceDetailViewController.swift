@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ServiceDetailViewControllerDelgateLogic: AnyObject {
+    func passServiceDetail(model: ServiceDetailModel)
+}
+
 protocol ServiceDetailViewControllerDelgate: AnyObject {
     func cancelService(value: Bool)
 }
@@ -16,12 +20,13 @@ class ServiceDetailViewController: UIViewController {
     // MARK: - Properties
     
     private let serviceDetailView = ServiceDetailView()
-    private let viewModel: ServiceDetailViewModel
+    
+    private let serviceInteractorLogic: ServiceDetailInteractorLogic
     
     weak var delegate: ServiceDetailViewControllerDelgate?
     
-    init(viewModel: ServiceDetailViewModel) {
-        self.viewModel = viewModel
+    init(serviceInteractorLogic: ServiceDetailInteractorLogic) {
+        self.serviceInteractorLogic = serviceInteractorLogic
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -43,8 +48,7 @@ class ServiceDetailViewController: UIViewController {
         let backButton = UIBarButtonItem()
         backButton.title = ""
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-        viewModel.delegate = self
-        viewModel.bindDataServiceDetail()
+        serviceInteractorLogic.saveDataServices()
     }
 }
 
@@ -65,21 +69,21 @@ extension ServiceDetailViewController: ServiceDetailViewDelegate {
     }
 }
 
-// MARK: - ServiceDetailViewModelDelegate
-
-extension ServiceDetailViewController: ServiceDetailViewModelDelegate {
-    func setupDataServiceModel(model: ServiceDetailModel) {
-        serviceDetailView.setupDate(setup: model)
-        serviceDetailView.serviceDetailCardView.setupDate(setup: model)
-    }
-}
-
 // MARK: - AlertServiceViewControllerDelegate
 
 extension ServiceDetailViewController: AlertServiceViewControllerDelegate {
     func cancelCard(value: Bool) {
         serviceDetailView.stackViewService.isHidden = value
-        viewModel.removeDataSave()
+        serviceInteractorLogic.removeDataSave()
         delegate?.cancelService(value: value)
+    }
+}
+
+// MARK: - ServiceDetailViewControllerDelgateLogic
+
+extension ServiceDetailViewController: ServiceDetailViewControllerDelgateLogic {
+    func passServiceDetail(model: ServiceDetailModel) {
+        serviceDetailView.setupDate(setup: model)
+        serviceDetailView.serviceDetailCardView.setupDate(setup: model)
     }
 }

@@ -62,10 +62,10 @@ class HomeServicesViewController: UIViewController {
     // MARK: - Functions
     
     @objc func handleTap() {
-        let serviceDetailViewModel = ServiceDetailViewModel()
-        let serviceDetailViewController = ServiceDetailViewController(viewModel: serviceDetailViewModel)
-        serviceDetailViewController.delegate = self
-        navigationController?.pushViewController(serviceDetailViewController, animated: true)
+        let serviceDetailConfuration = ServiceDetailConfiguration()
+        let callServiceViewController = serviceDetailConfuration.build(delegate: self)
+        
+        navigationController?.pushViewController(callServiceViewController, animated: true)
     }
 }
 

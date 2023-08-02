@@ -27,7 +27,9 @@
 		DAC596992A5B78B000495470 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC596982A5B78B000495470 /* HomePresenter.swift */; };
 		DAC5969B2A5B78C800495470 /* HomeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC5969A2A5B78C800495470 /* HomeConfiguration.swift */; };
 		DAC7723629D1E137002A0DB5 /* SchedulingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC7723529D1E137002A0DB5 /* SchedulingModel.swift */; };
-		DACD289829BE5FA5005DB832 /* ServiceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACD289729BE5FA5005DB832 /* ServiceDetailViewModel.swift */; };
+		DACAACF52A78802C0076B0F5 /* ServiceDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACAACF42A78802C0076B0F5 /* ServiceDetailInteractor.swift */; };
+		DACAACF72A7880430076B0F5 /* ServiceDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACAACF62A7880430076B0F5 /* ServiceDetailPresenter.swift */; };
+		DACAACF92A7880570076B0F5 /* ServiceDetailConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACAACF82A7880570076B0F5 /* ServiceDetailConfiguration.swift */; };
 		DACE2D7729BAB17C00226581 /* AlertServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACE2D7629BAB17C00226581 /* AlertServiceViewController.swift */; };
 		DACFBBD529B375F2000129CF /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACFBBD429B375F2000129CF /* ServiceModel.swift */; };
 		DAD18EB229B026F50024906A /* NewServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD18EB129B026F50024906A /* NewServicesViewController.swift */; };
@@ -74,7 +76,9 @@
 		DAC596982A5B78B000495470 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		DAC5969A2A5B78C800495470 /* HomeConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeConfiguration.swift; sourceTree = "<group>"; };
 		DAC7723529D1E137002A0DB5 /* SchedulingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingModel.swift; sourceTree = "<group>"; };
-		DACD289729BE5FA5005DB832 /* ServiceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewModel.swift; sourceTree = "<group>"; };
+		DACAACF42A78802C0076B0F5 /* ServiceDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailInteractor.swift; sourceTree = "<group>"; };
+		DACAACF62A7880430076B0F5 /* ServiceDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailPresenter.swift; sourceTree = "<group>"; };
+		DACAACF82A7880570076B0F5 /* ServiceDetailConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailConfiguration.swift; sourceTree = "<group>"; };
 		DACE2D7629BAB17C00226581 /* AlertServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertServiceViewController.swift; sourceTree = "<group>"; };
 		DACFBBD429B375F2000129CF /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
 		DAD18EB129B026F50024906A /* NewServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServicesViewController.swift; sourceTree = "<group>"; };
@@ -232,7 +236,9 @@
 				DAE6A1C829BA61FE00AEDD2E /* ServiceDetailViewController.swift */,
 				DAE6A1CA29BA63B500AEDD2E /* ServiceDetailView.swift */,
 				DAE6A1CC29BA69BC00AEDD2E /* ServiceDetailCardView.swift */,
-				DACD289729BE5FA5005DB832 /* ServiceDetailViewModel.swift */,
+				DACAACF42A78802C0076B0F5 /* ServiceDetailInteractor.swift */,
+				DACAACF62A7880430076B0F5 /* ServiceDetailPresenter.swift */,
+				DACAACF82A7880570076B0F5 /* ServiceDetailConfiguration.swift */,
 			);
 			path = ServiceDetail;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 				DAA4BC942A76ABAC006B8795 /* AlertServicePresenter.swift in Sources */,
 				DAE6A1CD29BA69BC00AEDD2E /* ServiceDetailCardView.swift in Sources */,
 				4C55034529379F3600699589 /* AppDelegate.swift in Sources */,
+				DACAACF52A78802C0076B0F5 /* ServiceDetailInteractor.swift in Sources */,
 				DAA4BC922A76AB97006B8795 /* AlertServiceInteractor.swift in Sources */,
 				DAC7723629D1E137002A0DB5 /* SchedulingModel.swift in Sources */,
 				DAEEA4DF29B6144900846A71 /* UIColor.swift in Sources */,
@@ -355,17 +362,18 @@
 				DAD18EB629B031010024906A /* NewServicesCell.swift in Sources */,
 				DA04E19629B0EE62008F0D24 /* SchedulingServicesView.swift in Sources */,
 				DAC5969B2A5B78C800495470 /* HomeConfiguration.swift in Sources */,
+				DACAACF92A7880570076B0F5 /* ServiceDetailConfiguration.swift in Sources */,
 				DACFBBD529B375F2000129CF /* ServiceModel.swift in Sources */,
 				DAC228C829BBB528001936F9 /* AlertServiceView.swift in Sources */,
 				DAB703B929BD0F7900AA2AB1 /* ReasonServiceService.swift in Sources */,
 				DA3CB21E29CA574700B0840C /* HomeModel.swift in Sources */,
-				DACD289829BE5FA5005DB832 /* ServiceDetailViewModel.swift in Sources */,
 				DAECCE6A2A6434E700866385 /* NewServicesInteractor.swift in Sources */,
 				DAECCE6C2A64352400866385 /* NewServicesPresenter.swift in Sources */,
 				DAECCE742A64485000866385 /* SchedulingServicesConfiguration.swift in Sources */,
 				DAD18EB229B026F50024906A /* NewServicesViewController.swift in Sources */,
 				DAE6A1CB29BA63B500AEDD2E /* ServiceDetailView.swift in Sources */,
 				DAE6A1C929BA61FE00AEDD2E /* ServiceDetailViewController.swift in Sources */,
+				DACAACF72A7880430076B0F5 /* ServiceDetailPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

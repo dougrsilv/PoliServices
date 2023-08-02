@@ -41,12 +41,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         let window = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window
-        let serviceDetailViewModel = ServiceDetailViewModel()
+        let serviceConfiguration = ServiceDetailConfiguration()
+        let callServiceConfiguration = serviceConfiguration.build(delegate: nil)
         
-        let serviceDetailViewController = ServiceDetailViewController(viewModel: serviceDetailViewModel)
            if let navigationController = window?.rootViewController as? UINavigationController {
                    
-               navigationController.pushViewController(serviceDetailViewController, animated: true)
+               navigationController.pushViewController(callServiceConfiguration, animated: true)
                }
         
         completionHandler()
